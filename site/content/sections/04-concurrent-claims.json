@@ -11,7 +11,7 @@
       "rules": [
         {
           "id": "date-overlap-rule",
-          "type": "danger",
+          "type": "remember",
           "title": "Three conditions are required to catch all overlapping claims",
           "body": "When identifying claims that are concurrent with an event of interest, capture any claim whose date range overlaps OR encompasses the event dates — not just claims that start within the event window.",
           "comparison": {

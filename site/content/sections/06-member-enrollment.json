@@ -67,7 +67,7 @@
       "rules": [
         {
           "id": "views-danger",
-          "type": "danger",
+          "type": "remember",
           "title": "Views can be ~10x slower than native tables",
           "body": "SAS views re-execute their underlying query at every reference. For member/enrollment lookups used repeatedly in a program, always materialize to a native table. Character date fields in views also require input() wrappers before any numeric comparison."
         }

@@ -50,7 +50,7 @@
       "rules": [
         {
           "id": "nodupkey-avoid",
-          "type": "danger",
+          "type": "remember",
           "title": "Avoid PROC SORT NODUPKEY as a general rule",
           "body": "NODUPKEY silently drops rows and makes it hard to know what was lost. It is only appropriate when the deduplication grain is fully understood and intentional.",
           "callout": {

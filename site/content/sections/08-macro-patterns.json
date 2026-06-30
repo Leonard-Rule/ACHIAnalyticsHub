@@ -49,7 +49,7 @@
       "rules": [
         {
           "id": "correlated-rule",
-          "type": "danger",
+          "type": "remember",
           "title": "Correlated EXISTS / NOT EXISTS subqueries are expensive",
           "body": "Correlated subqueries re-evaluate for every row in the outer query against a large claims table. Pre-build small lookup tables and replace with LEFT JOIN + IS NULL. This can dramatically reduce macro runtime on large claims tables."
         }
