@@ -1,7 +1,7 @@
 [
   {
     "id": "ssdrive-setup",
-    "title": "SSDrive path setup",
+    "title": "Library & path setup — Step 0 template",
     "file": "ssdrive-setup.sas",
     "language": "sas",
     "section_ref": "code-structure/library-path-setup",

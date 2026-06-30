@@ -1,24 +1,68 @@
 {
   "id": "code-structure",
-  "title": "Code Structure & Setup",
+  "title": "File Setup and Code Structure",
   "icon": "ti-folders",
   "order": 1,
   "subsections": [
     {
+      "id": "analytics-folder-structure",
+      "title": "Analytics Folder Structure",
+      "order": 1,
+      "rules": [
+        {
+          "id": "g-drive",
+          "type": "rule",
+          "title": "G:\\ — Shared Network Drive (Final Outputs Only)",
+          "body": "The G:\\ is accessible by other members of ACHI and needs to contain only final outputs, methodology, and notes or research.",
+          "list": [
+            "Located on the \\\\hosp1serv1 server",
+            "Analytics/Research team project folders: G:\\DATA\\AAA Analytic Projects"
+          ]
+        },
+        {
+          "id": "r-drive",
+          "type": "rule",
+          "title": "R:\\ — Analytics Team Drive (Working Files)",
+          "body": "The R:\\ is accessible only by the Analytics/Research team and may contain any analyzable datasets, raw output, and programs.",
+          "list": [
+            "Located on the \\\\vic-R.ad.uams.edu server",
+            "May contain analyzable datasets, raw output, and programs"
+          ]
+        },
+        {
+          "id": "folder-standards",
+          "type": "rule",
+          "title": "Folder Creation & Version Management",
+          "body": "For each project created, the primary analyst assigned to that project is responsible for creating folders on G:\\ and R:\\ if they have not yet been created.",
+          "list": [
+            "Each folder should contain a 'previous versions' subfolder to hold everything but the most current version",
+            "All work (including works in progress) must be stored on G:\\ or R:\\",
+            "Exception: working datasets may be stored on the SSDs"
+          ]
+        }
+      ]
+    },
+    {
       "id": "library-path-setup",
       "title": "Library & Path Setup",
-      "order": 1,
+      "order": 2,
       "rules": [
         {
           "id": "ssdrive-path",
           "type": "rule",
-          "title": "SSDrive must not point to SASWORK",
-          "body": "The SSDrive must point to a different folder than where SASWORK tables are saved. Each project gets its own named subfolder.",
+          "title": "SAS setup for efficiently running your code",
+          "body": "Each analyst's computer should have four encrypted solid-state drives (SSDs). The SSDrive must point to a different folder than where SASWORK tables are saved — each project gets its own named subfolder. Trial and error has suggested the following drive configuration works most efficiently:",
           "list": [
-            "F drive: SASWORK folder",
-            "D drive: claims data",
-            "E drive (or similar): SSDdrive — one named subfolder per project"
+            "C:\\ — Operating system",
+            "Second largest SSD (not C:\\) — dedicated solely to the work library and SASWORK. Edit the -WORK line in sasv9.cfg located at C:\\Program Files\\SASHome\\SASFoundation\\9.4\\nls\\en  →  -WORK \"E:\\SASWORK\\SAS Temporary Files\"",
+            "While in sasv9.cfg, also set (if not already present): -MEMSIZE 58G  |  -SORTSIZE 48G  |  -SUMSIZE 58G  |  -CPUCOUNT 60",
+            "Remaining SSD — SSDdrive for project working datasets, one named subfolder per project"
           ],
+          "callout": {
+            "type": "warning",
+            "title": "Back up sasv9.cfg before editing",
+            "body": "Before changing the config file be sure to save a backup copy of the original."
+          },
           "snippet_ref": "ssdrive-setup"
         }
       ]
@@ -26,7 +70,7 @@
     {
       "id": "standard-step-structure",
       "title": "Standard Step Structure",
-      "order": 2,
+      "order": 3,
       "rules": [
         {
           "id": "step-structure",
@@ -49,7 +93,7 @@
     {
       "id": "versioning-convention",
       "title": "Versioning Convention",
-      "order": 3,
+      "order": 4,
       "rules": [
         {
           "id": "versioning",

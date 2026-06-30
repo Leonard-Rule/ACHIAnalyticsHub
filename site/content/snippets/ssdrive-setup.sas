@@ -1,4 +1,8 @@
-/* SSDrive path setup — one named subfolder per project */
-/* F drive: SASWORK | D drive: claims | E drive: SSDdrive  */
-%let ssdpath = F:\SSDdrive\<project name>;
-libname ssdrive "&ssdpath.";
+%let ssdpath = E:\SSDDRIVE\Delta Dental 2025;
+%let rpath= R:\Delta Dental 2025\Coverage and Utilization\Data;
+
+libname ssdrive "&ssdpath";
+libname rdrive "&rpath";
+
+libname APCDclms "D:\APCD claims\25B";
+libname mcrclms "D:\APCD claims\medicare";

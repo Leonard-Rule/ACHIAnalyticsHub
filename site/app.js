@@ -191,7 +191,7 @@ function renderSidebar() {
     const group = el('div', {class: 'nav-group', role: 'treeitem'});
 
     const groupLabel = el('div', {class: 'nav-group-label', tabindex: '0',
-      'aria-expanded': 'false'});
+      'aria-expanded': 'false', 'data-section-id': section.id});
     groupLabel.innerHTML = `
       <span class="icon ${section.icon || 'ti-file'}" aria-hidden="true"></span>
       <span class="nav-label-text">${section.title}</span>
@@ -223,6 +223,9 @@ function renderSidebar() {
       subList.hidden = open;
       groupLabel.setAttribute('aria-expanded', String(!open));
       groupLabel.classList.toggle('open', !open);
+      // Navigate to section home on every click
+      navigateSectionHome(section);
+      setActiveNav(groupLabel);
     });
     groupLabel.addEventListener('keydown', e => e.key === 'Enter' && groupLabel.click());
 
@@ -240,15 +243,25 @@ function setActiveNav(target) {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
+function navigateSectionHome(section) {
+  State.activeSection = section;
+  history.pushState({sectionId: section.id}, '', `#${section.id}`);
+  updateBreadcrumb(section, null);
+  renderSectionHome(section);
+  document.getElementById('main').scrollTop = 0;
+}
+
 function navigateTo(sectionId, subId) {
   const section = State.sections.find(s => s.id === sectionId);
   if (!section) return;
 
+  if (!subId) {
+    navigateSectionHome(section);
+    return;
+  }
+
   State.activeSection = section;
-
-  const hash = subId ? `#${sectionId}/${subId}` : `#${sectionId}`;
-  history.pushState({sectionId, subId}, '', hash);
-
+  history.pushState({sectionId, subId}, '', `#${sectionId}/${subId}`);
   renderSection(section, subId);
   updateBreadcrumb(section, subId);
   document.getElementById('main').scrollTop = 0;
@@ -262,9 +275,20 @@ function navigateToHash() {
   const section = State.sections.find(s => s.id === sectionId);
   if (!section) return false;
 
+  State.activeSection = section;
+
+  if (!subId) {
+    renderSectionHome(section);
+    updateBreadcrumb(section, null);
+    requestAnimationFrame(() => {
+      const label = document.querySelector(`.nav-group-label[data-section-id="${sectionId}"]`);
+      if (label) setActiveNav(label);
+    });
+    return true;
+  }
+
   renderSection(section, subId);
   updateBreadcrumb(section, subId);
-  State.activeSection = section;
 
   // Highlight the right nav item
   requestAnimationFrame(() => {
@@ -343,13 +367,38 @@ function renderHome() {
       <span class="section-overview-title">${section.title}</span>
       <span class="section-overview-count">${(section.subsections || []).length} topics</span>
     `;
-    item.addEventListener('click', () => {
-      const firstSub = (section.subsections || [])[0];
-      if (firstSub) navigateTo(section.id, firstSub.id);
-    });
+    item.addEventListener('click', () => navigateSectionHome(section));
     sectionList.appendChild(item);
   });
   area.appendChild(sectionList);
+}
+
+// ─── Section home ────────────────────────────────────────────────────────────
+
+function renderSectionHome(section) {
+  const area = document.getElementById('content-area');
+  area.innerHTML = '';
+
+  const titleEl = el('h1', {class: 'page-title'});
+  titleEl.innerHTML = `<span class="icon ${section.icon || 'ti-file'}" style="font-size:34px;vertical-align:-.1em;margin-right:14px;color:var(--teal)"></span>${section.title}`;
+  area.appendChild(titleEl);
+
+  const subs = section.subsections || [];
+  area.appendChild(el('h2', {class: 'section-h'}, `${subs.length} topic${subs.length !== 1 ? 's' : ''}`));
+
+  const list = el('div', {class: 'section-overview'});
+  subs.forEach(sub => {
+    const ruleCount = (sub.rules || []).length;
+    const item = el('div', {class: 'section-overview-item'});
+    item.innerHTML = `
+      <span class="icon ti-article" aria-hidden="true"></span>
+      <span class="section-overview-title">${sub.title}</span>
+      <span class="section-overview-count">${ruleCount} rule${ruleCount !== 1 ? 's' : ''}</span>
+    `;
+    item.addEventListener('click', () => navigateTo(section.id, sub.id));
+    list.appendChild(item);
+  });
+  area.appendChild(list);
 }
 
 // ─── Section rendering ───────────────────────────────────────────────────────
