@@ -1,0 +1,90 @@
+{
+  "id": "member-enrollment",
+  "title": "Member & Enrollment Tables",
+  "icon": "ti-users",
+  "order": 6,
+  "subsections": [
+    {
+      "id": "payer-assignment-medical",
+      "title": "Payer Assignment (Medical)",
+      "order": 1,
+      "rules": [
+        {
+          "id": "payer-medical-snippet",
+          "type": "placeholder",
+          "title": "Medical Payer Assignment",
+          "body": "Code snippet to be added. This section will contain the logic for assigning members to payer categories (Commercial, Medicaid, Medicare) based on plan type and coverage flags.",
+          "snippet_ref": "payer-assignment-medical"
+        }
+      ]
+    },
+    {
+      "id": "payer-assignment-dental",
+      "title": "Payer Assignment (Dental)",
+      "order": 2,
+      "rules": [
+        {
+          "id": "payer-dental-snippet",
+          "type": "placeholder",
+          "title": "Dental Payer Assignment",
+          "body": "Code snippet to be added. Pull medical records first per year, do collision reduction, roll up start/end dates. Then pull dental member records into a separate dental plans table. Apply ranking so each standalone dental plan maps to exactly one medical plan type.",
+          "snippet_ref": "payer-assignment-dental"
+        }
+      ]
+    },
+    {
+      "id": "race-ethnicity-sex",
+      "title": "Race, Ethnicity, Sex Assignment",
+      "order": 3,
+      "rules": [
+        {
+          "id": "demographics-snippet",
+          "type": "placeholder",
+          "title": "Race / Ethnicity / Sex Assignment",
+          "body": "Code snippet to be added.",
+          "snippet_ref": "race-ethnicity-sex"
+        }
+      ]
+    },
+    {
+      "id": "county-residence",
+      "title": "County of Residence Assignment",
+      "order": 4,
+      "rules": [
+        {
+          "id": "county-rule",
+          "type": "rule",
+          "title": "Assign county based on most-recently-updated record per year",
+          "body": "County should be assigned based on the most-recently-updated county per year — not per quarter, unless the project requires quarterly granularity. The ZIP-to-county crosswalk is in geoinfo.clean_county_xwalk.",
+          "snippet_ref": "county-residence-assignment"
+        }
+      ]
+    },
+    {
+      "id": "views-vs-tables",
+      "title": "Native Tables vs. Views",
+      "order": 5,
+      "rules": [
+        {
+          "id": "views-danger",
+          "type": "danger",
+          "title": "Views can be ~10x slower than native tables",
+          "body": "SAS views re-execute their underlying query at every reference. For member/enrollment lookups used repeatedly in a program, always materialize to a native table. Character date fields in views also require input() wrappers before any numeric comparison."
+        }
+      ]
+    },
+    {
+      "id": "age-assignment",
+      "title": "Adult / Child Age Assignment",
+      "order": 6,
+      "rules": [
+        {
+          "id": "age-rule",
+          "type": "rule",
+          "title": "Age category as of Jan 1 of the year OR enrollment start, whichever is later",
+          "body": "Determine age category as of January 1 of the year in question OR the enrollment start date, whichever comes later. Adult = age 19+. Child = age 18 and under. Run analysis on the regular member table — not the enrollment segment table."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+[
+  {
+    "id": "ssdrive-setup",
+    "title": "SSDrive path setup",
+    "file": "ssdrive-setup.sas",
+    "language": "sas",
+    "section_ref": "code-structure/library-path-setup",
+    "status": "active",
+    "tags": ["setup", "libraries", "step-0"]
+  },
+  {
+    "id": "claim-pull-pattern",
+    "title": "Claim pull — inline subquery then join",
+    "file": "claim-pull-pattern.sas",
+    "language": "sas",
+    "section_ref": "sql-best-practices/claim-pull-pattern",
+    "status": "active",
+    "tags": ["sql", "claims", "performance", "efficiency"]
+  },
+  {
+    "id": "null-not-in-fix",
+    "title": "NOT IN with NULLs — LEFT JOIN fix",
+    "file": "null-not-in-fix.sas",
+    "language": "sas",
+    "section_ref": "sql-best-practices/null-not-in",
+    "status": "active",
+    "tags": ["sql", "nulls", "not-in", "left-join"]
+  },
+  {
+    "id": "and-or-parentheses",
+    "title": "AND / OR precedence — explicit parentheses",
+    "file": "and-or-parentheses.sas",
+    "language": "sas",
+    "section_ref": "sql-best-practices/and-or-precedence",
+    "status": "active",
+    "tags": ["sql", "logic", "case-when", "where"]
+  },
+  {
+    "id": "date-join-correct",
+    "title": "Date conditions in LEFT JOIN ON clause",
+    "file": "date-join-correct.sas",
+    "language": "sas",
+    "section_ref": "sql-best-practices/date-conditions-joins",
+    "status": "active",
+    "tags": ["sql", "joins", "left-join", "dates"]
+  },
+  {
+    "id": "union-all-pattern",
+    "title": "UNION ALL for stacking yearly tables",
+    "file": "union-all-pattern.sas",
+    "language": "sas",
+    "section_ref": "sql-best-practices/union-all",
+    "status": "active",
+    "tags": ["sql", "union", "yearly-tables"]
+  },
+  {
+    "id": "calculated-subquery",
+    "title": "CALCULATED alias — subquery wrapper fix",
+    "file": "calculated-subquery.sas",
+    "language": "sas",
+    "section_ref": "sql-best-practices/calculated-aliases",
+    "status": "active",
+    "tags": ["sql", "calculated", "case-when", "subquery"]
+  },
+  {
+    "id": "partition-by-workaround",
+    "title": "PARTITION BY workaround for SAS 9.4",
+    "file": "partition-by-workaround.sas",
+    "language": "sas",
+    "section_ref": "sql-best-practices/partition-by",
+    "status": "active",
+    "tags": ["sql", "window-functions", "sas-9-4", "workaround"]
+  },
+  {
+    "id": "first-dedup",
+    "title": "FIRST. dedup — top-ranked row per ID",
+    "file": "first-dedup.sas",
+    "language": "sas",
+    "section_ref": "ids-deduplication/single-row-per-id",
+    "status": "active",
+    "tags": ["dedup", "first-dot", "data-step", "ranking"]
+  },
+  {
+    "id": "date-overlap-wrong",
+    "title": "Date overlap — incorrect narrow approach",
+    "file": "date-overlap-wrong.sas",
+    "language": "sas",
+    "section_ref": "concurrent-claims/date-overlap-definition",
+    "status": "active",
+    "tags": ["concurrent-claims", "dates", "overlap", "example-wrong"]
+  },
+  {
+    "id": "date-overlap-correct",
+    "title": "Date overlap — correct three-condition logic",
+    "file": "date-overlap-correct.sas",
+    "language": "sas",
+    "section_ref": "concurrent-claims/date-overlap-definition",
+    "status": "active",
+    "tags": ["concurrent-claims", "dates", "overlap", "three-conditions"]
+  },
+  {
+    "id": "classify-professional-facility",
+    "title": "Professional vs. Facility Classification",
+    "file": null,
+    "language": "sas",
+    "section_ref": "claims-classification/professional-facility",
+    "status": "placeholder",
+    "tags": ["classification", "claims", "facility", "professional"]
+  },
+  {
+    "id": "classify-inpatient-outpatient",
+    "title": "Inpatient vs. Outpatient Classification",
+    "file": null,
+    "language": "sas",
+    "section_ref": "claims-classification/inpatient-outpatient",
+    "status": "placeholder",
+    "tags": ["classification", "claims", "inpatient", "outpatient"]
+  },
+  {
+    "id": "payer-assignment-medical",
+    "title": "Medical Payer Assignment",
+    "file": null,
+    "language": "sas",
+    "section_ref": "member-enrollment/payer-assignment-medical",
+    "status": "placeholder",
+    "tags": ["payer", "medical", "commercial", "medicaid", "medicare"]
+  },
+  {
+    "id": "payer-assignment-dental",
+    "title": "Dental Payer Assignment",
+    "file": null,
+    "language": "sas",
+    "section_ref": "member-enrollment/payer-assignment-dental",
+    "status": "placeholder",
+    "tags": ["payer", "dental", "ddarf"]
+  },
+  {
+    "id": "race-ethnicity-sex",
+    "title": "Race / Ethnicity / Sex Assignment",
+    "file": null,
+    "language": "sas",
+    "section_ref": "member-enrollment/race-ethnicity-sex",
+    "status": "placeholder",
+    "tags": ["demographics", "race", "ethnicity", "sex"]
+  },
+  {
+    "id": "county-residence-assignment",
+    "title": "County of Residence Assignment",
+    "file": "county-residence-assignment.sas",
+    "language": "sas",
+    "section_ref": "member-enrollment/county-residence",
+    "status": "active",
+    "tags": ["county", "geography", "zip", "crosswalk"]
+  },
+  {
+    "id": "year-loop-pattern",
+    "title": "Year loop — %do %while with %scan",
+    "file": "year-loop-pattern.sas",
+    "language": "sas",
+    "section_ref": "macro-patterns/year-loops",
+    "status": "active",
+    "tags": ["macro", "year-loop", "do-while", "scan"]
+  },
+  {
+    "id": "row-count-comment",
+    "title": "Row count comment standard",
+    "file": "row-count-comment.sas",
+    "language": "sas",
+    "section_ref": "validation-practices/row-count-comments",
+    "status": "active",
+    "tags": ["validation", "row-count", "documentation"]
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "id": "claims-classification",
+  "title": "Claims Classification",
+  "icon": "ti-tags",
+  "order": 5,
+  "subsections": [
+    {
+      "id": "professional-facility",
+      "title": "Classify Professional and Facility Claims",
+      "order": 1,
+      "rules": [
+        {
+          "id": "prof-facility-snippet",
+          "type": "placeholder",
+          "title": "Professional vs. Facility Classification",
+          "body": "Code snippet to be added. This section will contain the logic for distinguishing professional claims from facility claims using claim type indicators and bill type codes.",
+          "snippet_ref": "classify-professional-facility"
+        }
+      ]
+    },
+    {
+      "id": "inpatient-outpatient",
+      "title": "Classify Inpatient vs. Outpatient",
+      "order": 2,
+      "rules": [
+        {
+          "id": "inp-outp-snippet",
+          "type": "placeholder",
+          "title": "Inpatient vs. Outpatient Classification",
+          "body": "Code snippet to be added. This section will contain the logic for classifying claims as inpatient or outpatient using revenue codes, bill type, and place of service.",
+          "snippet_ref": "classify-inpatient-outpatient"
+        }
+      ]
+    }
+  ]
+}

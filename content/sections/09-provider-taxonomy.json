@@ -1,0 +1,59 @@
+{
+  "id": "provider-taxonomy",
+  "title": "Provider & Clinic Taxonomy",
+  "icon": "ti-building-hospital",
+  "order": 9,
+  "subsections": [
+    {
+      "id": "clinic-types",
+      "title": "Key Clinic Types in Arkansas",
+      "order": 1,
+      "rules": [
+        {
+          "id": "taxonomy-intro",
+          "type": "rule",
+          "title": "Three clinic types frequently appear in APCD and claims analysis",
+          "body": "These types are often confused. Key differences are in how they are funded, how they are identified in claims, and what services they provide."
+        }
+      ],
+      "taxonomy_cards": [
+        {
+          "id": "fqhc",
+          "abbreviation": "FQHC",
+          "full_name": "Federally Qualified Health Center",
+          "funding": "HRSA funded",
+          "coverage": "Most AR counties have one",
+          "services": "Comprehensive care",
+          "identification": [
+            "Provider NPI belongs to the clinic — not a person",
+            "Often also identifiable by type of bill = '77'"
+          ],
+          "notes": []
+        },
+        {
+          "id": "lhu",
+          "abbreviation": "LHU / ADH Clinic",
+          "full_name": "Local Health Unit",
+          "funding": "ADH funded",
+          "coverage": "Every AR county has one",
+          "services": "Prenatal care, immunizations, family planning. Some in-house treatments — not prescriptions.",
+          "identification": [
+            "Identifiable by billing NPI",
+            "County CANNOT be determined from claims — use member's county of residence"
+          ],
+          "notes": ["County must be assigned from member residence, not from claims data"]
+        },
+        {
+          "id": "ahec",
+          "abbreviation": "AHEC",
+          "full_name": "Area Health Education Center / UAMS Regional Campus",
+          "funding": "HRSA funded",
+          "coverage": null,
+          "services": "Education centers",
+          "identification": [],
+          "notes": ["Can also be FQHCs"]
+        }
+      ]
+    }
+  ]
+}

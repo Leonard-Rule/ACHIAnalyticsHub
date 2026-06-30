@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Internal analytics reference for the ACHI team — SAS standards, SQL best practices, claims logic, and project guidance.">
+  <meta name="theme-color" content="#00558c">
+  <title>ACHI Analyst Reference Hub</title>
+
+  <!-- Brand fonts: Montserrat (display) · Source Sans 3 (body) · IBM Plex Mono (code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+
+  <!-- Tabler icon webfont — provides the ti-* glyphs the app references -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+
+  <!-- ACHI design system -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header id="topbar">
+    <div id="topbar-left">
+      <button id="sidebar-toggle" aria-label="Toggle sidebar">
+        <span class="icon ti-menu-2"></span>
+      </button>
+      <span id="site-title">ACHI Analyst Reference</span>
+    </div>
+    <div id="topbar-center">
+      <div id="search-wrap">
+        <span class="icon ti-search" aria-hidden="true"></span>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search rules, snippets, projects..."
+          aria-label="Search the reference hub"
+          autocomplete="off"
+        >
+        <kbd id="search-shortcut">⌘K</kbd>
+      </div>
+    </div>
+    <div id="topbar-right">
+      <button id="quick-ref-toggle" title="Quick Reference — Do / Don't">
+        <span class="icon ti-checklist"></span>
+        Quick Ref
+      </button>
+    </div>
+  </header>
+
+  <!-- Search results overlay -->
+  <div id="search-results" role="listbox" aria-label="Search results" hidden></div>
+
+  <!-- Layout wrapper -->
+  <div id="layout">
+
+    <!-- Left sidebar -->
+    <nav id="sidebar" aria-label="Section navigation">
+      <div id="nav-list" role="tree"></div>
+    </nav>
+
+    <!-- Main content -->
+    <main id="main" role="main">
+      <div id="breadcrumb" aria-label="Breadcrumb"></div>
+      <div id="content-area"></div>
+    </main>
+
+    <!-- Quick reference panel -->
+    <aside id="quick-ref-panel" hidden aria-label="Quick reference">
+      <div id="quick-ref-header">
+        <span>Quick Reference</span>
+        <button id="quick-ref-close" aria-label="Close quick reference">
+          <span class="icon ti-x"></span>
+        </button>
+      </div>
+      <div id="quick-ref-body"></div>
+    </aside>
+
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Templates (hidden, cloned by JS) -->
+  <template id="tpl-rule-card">
+    <article class="rule-card" data-type="">
+      <div class="rule-card-header">
+        <div class="rule-card-meta">
+          <span class="rule-badge"></span>
+          <button class="flag-btn" title="Flag as outdated" aria-label="Flag this rule as outdated">
+            <span class="icon ti-flag"></span>
+          </button>
+        </div>
+        <h3 class="rule-title"></h3>
+      </div>
+      <div class="rule-body"></div>
+      <ul class="rule-list" hidden></ul>
+      <div class="rule-callout" hidden></div>
+      <div class="rule-snippet-slot" hidden></div>
+    </article>
+  </template>
+
+  <template id="tpl-snippet-block">
+    <div class="snippet-block">
+      <div class="snippet-header">
+        <span class="snippet-lang"></span>
+        <span class="snippet-title"></span>
+        <div class="snippet-actions">
+          <button class="copy-btn" aria-label="Copy code">
+            <span class="icon ti-copy"></span> Copy
+          </button>
+          <button class="suggest-btn" aria-label="Suggest edit" title="Suggest an edit (coming soon)">
+            <span class="icon ti-edit"></span> Suggest edit
+          </button>
+        </div>
+      </div>
+      <pre class="snippet-code"><code></code></pre>
+    </div>
+  </template>
+
+  <template id="tpl-placeholder-snippet">
+    <div class="snippet-block snippet-placeholder">
+      <div class="snippet-header">
+        <span class="snippet-lang">SAS</span>
+        <span class="snippet-title"></span>
+        <div class="snippet-actions">
+          <button class="copy-btn" aria-label="Copy placeholder">
+            <span class="icon ti-copy"></span> Copy
+          </button>
+          <button class="contribute-btn" aria-label="Contribute code">
+            <span class="icon ti-plus"></span> Contribute
+          </button>
+        </div>
+      </div>
+      <pre class="snippet-code placeholder-code"><code>/* [Code snippet to be added — click Contribute to submit via GitHub] */</code></pre>
+    </div>
+  </template>
+
+  <template id="tpl-checklist">
+    <ul class="interactive-checklist" role="list"></ul>
+  </template>
+
+  <template id="tpl-checklist-item">
+    <li class="checklist-item" role="listitem">
+      <label class="checklist-label">
+        <input type="checkbox" class="checklist-check">
+        <span class="checklist-text"></span>
+      </label>
+    </li>
+  </template>
+
+  <template id="tpl-decision-tree">
+    <div class="decision-tree">
+      <div class="tree-header">
+        <h3 class="tree-title"></h3>
+        <p class="tree-description"></p>
+        <button class="tree-reset-btn">
+          <span class="icon ti-refresh"></span> Reset
+        </button>
+      </div>
+      <div class="tree-body"></div>
+      <div class="tree-result" hidden></div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

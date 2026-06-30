@@ -1,0 +1,44 @@
+{
+  "id": "visualizations",
+  "title": "Visualizations",
+  "icon": "ti-chart-bar",
+  "order": 11,
+  "subsections": [
+    {
+      "id": "viz-placeholder",
+      "title": "Interactive Visual Tools",
+      "order": 1,
+      "rules": [
+        {
+          "id": "viz-intro",
+          "type": "placeholder",
+          "title": "Coming soon",
+          "body": "This section will house interactive visual tools for the team — charts, maps, trend explorers, and dashboards built from ACHI analytical outputs."
+        }
+      ],
+      "placeholder_cards": [
+        {
+          "id": "procedure-trends",
+          "title": "Procedure Trend Explorer",
+          "description": "Interactive chart showing procedure volume trends by year, payer, and region",
+          "icon": "ti-chart-line",
+          "status": "planned"
+        },
+        {
+          "id": "county-utilization",
+          "title": "County-Level Utilization Map",
+          "description": "Choropleth map of Arkansas showing utilization rates by county for key service lines",
+          "icon": "ti-map",
+          "status": "planned"
+        },
+        {
+          "id": "payer-mix",
+          "title": "Payer Mix Dashboard",
+          "description": "Breakdown of commercial, Medicaid, and Medicare coverage across years and service lines",
+          "icon": "ti-chart-donut",
+          "status": "planned"
+        }
+      ]
+    }
+  ]
+}

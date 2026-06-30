@@ -1,0 +1,60 @@
+{
+  "id": "validation-practices",
+  "title": "Validation Practices",
+  "icon": "ti-clipboard-check",
+  "order": 7,
+  "subsections": [
+    {
+      "id": "how-to-validate",
+      "title": "How to Validate",
+      "order": 1,
+      "rules": [
+        {
+          "id": "validation-checklist",
+          "type": "rule",
+          "title": "Validation checklist — run through these for every program you review",
+          "body": "When validating someone else's code, work through these steps in order. Each item can be checked off as you complete it.",
+          "checklist": [
+            "Run each section independently — do not run the entire program end to end as a first step",
+            "Examine every table that is created",
+            "Pay particular attention to joins (fan-out risk), unions (column alignment, UNION vs UNION ALL), and any derived variables",
+            "Confirm that created variables and the resulting output make logical sense",
+            "Check all commented-out row counts against your own log — if they differ, investigate (sometimes counts are just stale from a re-run and may be benign, but always leave a note)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "documenting-findings",
+      "title": "Documenting Findings",
+      "order": 2,
+      "rules": [
+        {
+          "id": "documenting-rule",
+          "type": "tip",
+          "title": "Annotate in your copy of the program, mark with your initials",
+          "body": "As you validate, document questions and discrepancies so the original author can find and address them.",
+          "list": [
+            "Annotate directly in your copy of the program with inline comments",
+            "Optionally also capture in a separate email or document",
+            "Mark your own editorial comments with your initials (Sarah uses 'sc')"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "row-count-comments",
+      "title": "Row Count Comments",
+      "order": 3,
+      "rules": [
+        {
+          "id": "row-count-rule",
+          "type": "rule",
+          "title": "Comment out row counts from the log next to every key table",
+          "body": "Row counts from the SAS log should be commented out immediately adjacent to the code that created that table. This is a team standard that allows validators to independently check their results without re-running the full program. Not required for every intermediate table, but the more the better.",
+          "snippet_ref": "row-count-comment"
+        }
+      ]
+    }
+  ]
+}
