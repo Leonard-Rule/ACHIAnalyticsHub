@@ -1,0 +1,148 @@
+backend:
+  name: github
+  repo: YOUR_ORG/achi-hub       # ← update this
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+# Netlify Identity for teams without GitHub accounts
+# Swap backend above to `name: git-gateway` if using Netlify Identity
+
+publish_mode: editorial_workflow  # draft → review → published
+
+media_folder: site/assets
+public_folder: /assets
+
+collections:
+
+  # ── Sections ──────────────────────────────────────────────────────────────
+  - name: sections
+    label: Reference Sections
+    label_singular: Section
+    folder: content/sections
+    extension: json
+    format: json
+    create: false           # sections are fixed; edit only, no new files via CMS
+    identifier_field: title
+    summary: "{{order}}. {{title}}"
+    sortable_fields: [order]
+    fields:
+      - { label: ID, name: id, widget: string, hint: "Kebab-case, no spaces. Don't change this." }
+      - { label: Title, name: title, widget: string }
+      - { label: Icon (Tabler class), name: icon, widget: string, default: "ti-file" }
+      - { label: Display Order, name: order, widget: number }
+      - label: Subsections
+        name: subsections
+        widget: list
+        summary: "{{fields.title}}"
+        fields:
+          - { label: ID, name: id, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Order, name: order, widget: number }
+          - label: Rules
+            name: rules
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - label: Type
+                name: type
+                widget: select
+                options: [rule, danger, warning, tip, placeholder]
+                default: rule
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+              - label: Tip Box
+                name: tip
+                widget: string
+                required: false
+                hint: "Short tip callout shown below body"
+              - label: List Items
+                name: list
+                widget: list
+                required: false
+                field: { label: Item, name: item, widget: string }
+              - label: Code Snippet Reference
+                name: snippet_ref
+                widget: string
+                required: false
+                hint: "Must match a snippet ID in content/snippets/manifest.json"
+              - label: Status
+                name: status
+                widget: select
+                options: [active, flagged, draft]
+                default: active
+                required: false
+              - label: Flagged Reason
+                name: flag_reason
+                widget: string
+                required: false
+                hint: "Explain why this rule is flagged as potentially outdated"
+
+  # ── Code Snippets ──────────────────────────────────────────────────────────
+  - name: snippets
+    label: Code Snippets
+    label_singular: Snippet
+    folder: content/snippets
+    extension: json
+    format: json
+    create: true
+    identifier_field: title
+    summary: "{{title}} [{{status}}]"
+    filter: { field: extension, value: json }
+    fields:
+      - { label: ID, name: id, widget: string, hint: "Kebab-case. Must match the filename without extension." }
+      - { label: Title, name: title, widget: string }
+      - { label: SAS File, name: file, widget: string, required: false,
+          hint: "Filename in content/snippets/ e.g. claim-pull-pattern.sas" }
+      - { label: Language, name: language, widget: select,
+          options: [sas, sql, python, r], default: sas }
+      - { label: Section Reference, name: section_ref, widget: string,
+          hint: "section-id/subsection-id — used for cross-linking" }
+      - label: Status
+        name: status
+        widget: select
+        options: [active, placeholder, flagged, deprecated]
+        default: active
+      - label: Tags
+        name: tags
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+
+  # ── Projects ──────────────────────────────────────────────────────────────
+  - name: projects
+    label: Project Notes
+    label_singular: Project
+    files:
+      - label: All Projects
+        name: all-projects
+        file: content/projects/all-projects.json
+        fields:
+          - label: Projects
+            name: projects
+            widget: list
+            summary: "{{fields.title}}"
+            identifier_field: title
+            fields:
+              - { label: ID, name: id, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Icon (Tabler class), name: icon, widget: string }
+              - label: Status
+                name: status
+                widget: select
+                options: [active, archived]
+                default: active
+              - label: Notes
+                name: notes
+                widget: list
+                summary: "{{fields.text}}"
+                fields:
+                  - { label: ID, name: id, widget: string }
+                  - { label: Note Text, name: text, widget: text }
+                  - label: Type
+                    name: type
+                    widget: select
+                    options: [rule, warning, danger, tip]
+                    default: rule
+                  - { label: Section Link (optional), name: link_ref, widget: string,
+                      required: false, hint: "section-id/subsection-id" }

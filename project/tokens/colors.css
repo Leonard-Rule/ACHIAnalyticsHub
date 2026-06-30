@@ -1,0 +1,93 @@
+/* ============================================================
+   ACHI — Color tokens
+   Confirmed from achi.net CSS: teal #16A0B3, maroon #762146, mist #E8F1F2.
+   Primary navy/blue is derived to harmonize (flagged as estimated pending brand guide).
+   ============================================================ */
+
+:root {
+  /* ---- Brand: primary blue family (navy → bright) ---- */
+  --achi-navy-900: #003049;
+  --achi-navy-800: #003f63;
+  --achi-navy:     #00558c;   /* PRIMARY (estimated) */
+  --achi-blue:     #0a78bf;
+  --achi-blue-300: #6fb4dd;
+  --achi-blue-100: #cfe6f4;
+
+  /* ---- Brand: teal accent (CONFIRMED) ---- */
+  --achi-teal-700: #0c7c8c;
+  --achi-teal:     #16a0b3;   /* CONFIRMED accent */
+  --achi-teal-300: #7fcdd7;
+  --achi-teal-100: #d6eef1;
+
+  /* ---- Brand: maroon secondary (CONFIRMED) ---- */
+  --achi-maroon-700: #5c1a37;
+  --achi-maroon:     #762146;  /* CONFIRMED */
+  --achi-maroon-300: #c08aa0;
+  --achi-maroon-100: #efdde4;
+
+  /* ---- Mist: pale brand surface (CONFIRMED #E8F1F2) ---- */
+  --achi-mist:      #e8f1f2;   /* CONFIRMED */
+  --achi-mist-deep: #d4e4e7;
+
+  /* ---- Neutrals: cool clinical gray ramp ---- */
+  --achi-white:     #ffffff;
+  --achi-gray-25:   #f7f9fb;
+  --achi-gray-50:   #eef2f6;
+  --achi-gray-100:  #e2e8ee;
+  --achi-gray-200:  #cdd7e0;
+  --achi-gray-300:  #aebccb;
+  --achi-gray-400:  #8294a6;
+  --achi-gray-500:  #5f7185;
+  --achi-gray-600:  #44566a;
+  --achi-gray-700:  #2f3f51;
+  --achi-gray-800:  #1f2c3a;
+  --achi-ink:       #16222e;   /* near-black text */
+
+  /* ---- Semantic / status (health context) ---- */
+  --achi-success:  #1f8a5b;
+  --achi-success-bg: #e3f3ea;
+  --achi-warning:  #c9831f;
+  --achi-warning-bg: #fbeed7;
+  --achi-danger:   #c0392b;
+  --achi-danger-bg:  #f8e1de;
+  --achi-info:     var(--achi-blue);
+  --achi-info-bg:    var(--achi-blue-100);
+
+  /* ============================================================
+     SEMANTIC ALIASES — prefer these in components
+     ============================================================ */
+
+  /* Brand roles */
+  --brand-primary:    var(--achi-navy);
+  --brand-primary-strong: var(--achi-navy-800);
+  --brand-accent:     var(--achi-teal);
+  --brand-accent-strong: var(--achi-teal-700);
+  --brand-secondary:  var(--achi-maroon);
+
+  /* Text */
+  --text-strong:   var(--achi-ink);
+  --text-body:     var(--achi-gray-700);
+  --text-muted:    var(--achi-gray-500);
+  --text-faint:    var(--achi-gray-400);
+  --text-inverse:  var(--achi-white);
+  --text-link:     var(--achi-teal-700);
+  --text-link-hover: var(--achi-navy);
+
+  /* Surfaces */
+  --surface-page:    var(--achi-white);
+  --surface-card:    var(--achi-white);
+  --surface-tint:    var(--achi-mist);
+  --surface-subtle:  var(--achi-gray-25);
+  --surface-sunken:  var(--achi-gray-50);
+  --surface-inverse: var(--achi-navy-900);
+  --surface-accent:  var(--achi-teal);
+
+  /* Borders */
+  --border-subtle:  var(--achi-gray-100);
+  --border-default: var(--achi-gray-200);
+  --border-strong:  var(--achi-gray-300);
+  --border-brand:   var(--achi-teal);
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(22, 160, 179, 0.40);
+}

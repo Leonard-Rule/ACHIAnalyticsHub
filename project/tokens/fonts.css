@@ -1,0 +1,10 @@
+/* ACHI webfonts.
+   SUBSTITUTION NOTE: ACHI's site is built on WordPress/Elementor with Google Fonts.
+   The exact families were not retrievable from the public CSS, so this system uses a
+   faithful, professional substitution pending the official brand fonts:
+     - Display / headings: Montserrat (geometric, confident, used widely across the site's headers)
+     - Body / UI:          Source Sans 3 (clean, highly legible at data-dense sizes)
+     - Mono / data:        IBM Plex Mono (figures, tables, code)
+   Replace the @import below + the --font-* tokens in typography.css when the real fonts arrive. */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');

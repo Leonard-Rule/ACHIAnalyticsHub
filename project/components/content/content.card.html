@@ -1,0 +1,59 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Content — Headings, Stats, Cards" subtitle="Section heading, stat, callout, article card, avatar" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-subtle); font-family: var(--font-body); }
+  .stack { display: flex; flex-direction: column; gap: 26px; }
+  .stats { display: flex; gap: 36px; align-items: flex-end; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .calls { display: flex; flex-direction: column; gap: 12px; }
+  .people { display: flex; gap: 14px; align-items: center; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel">
+    const { SectionHeading, Stat, Callout, ArticleCard, Avatar } = window.ACHIDesignSystem_cd4297;
+    function Demo() {
+      return (
+        <div className="stack">
+          <SectionHeading eyebrow="Publications" title="Travel time to delivery facilities"
+            description="Longer travel times to delivery facilities are associated with higher risks of adverse maternal and neonatal outcomes." />
+          <div className="stats">
+            <Stat value="1 in 3" label="Arkansans on Medicaid" source="ACHI, 2024" />
+            <Stat value="44%" label="of rural L&D units at risk of closing" color="maroon" size="lg" />
+            <Stat value="7.5" label="infant deaths per 1,000 births" color="teal" />
+          </div>
+          <div className="calls">
+            <Callout tone="brand" title="Key takeaway">Mothers in some parts of Arkansas had C-sections at much higher rates than others.</Callout>
+            <Callout tone="warning">Data for 2024 is preliminary and subject to revision.</Callout>
+          </div>
+          <div className="cards">
+            <ArticleCard category="Maternal & Infant Health" meta="June 24, 2026 · Publication"
+              title="C-Section Rates in Arkansas, 2021–2023"
+              excerpt="Mothers in some parts of the state had the procedure at much higher rates than others."
+              href="#" />
+            <ArticleCard category="Rural Health" categoryColor="maroon" meta="June 9, 2026 · Blog"
+              title="44% of Rural Labor & Delivery Units at Risk"
+              excerpt="Rural communities continue to experience decreasing access to maternity care."
+              href="#" />
+          </div>
+          <div className="people">
+            <Avatar name="Joseph W. Thompson" size="lg" />
+            <Avatar name="Craig Wilson" color="teal" size="lg" />
+            <Avatar name="Jennifer Wessel" color="maroon" size="lg" />
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

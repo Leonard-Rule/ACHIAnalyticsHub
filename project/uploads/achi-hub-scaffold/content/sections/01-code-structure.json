@@ -1,0 +1,68 @@
+{
+  "id": "code-structure",
+  "title": "Code Structure & Setup",
+  "icon": "ti-folders",
+  "order": 1,
+  "subsections": [
+    {
+      "id": "library-path-setup",
+      "title": "Library & Path Setup",
+      "order": 1,
+      "rules": [
+        {
+          "id": "ssdrive-path",
+          "type": "rule",
+          "title": "SSDrive must not point to SASWORK",
+          "body": "The SSDrive must point to a different folder than where SASWORK tables are saved. Each project gets its own named subfolder.",
+          "list": [
+            "F drive: SASWORK folder",
+            "D drive: claims data",
+            "E drive (or similar): SSDdrive — one named subfolder per project"
+          ],
+          "snippet_ref": "ssdrive-setup"
+        }
+      ]
+    },
+    {
+      "id": "standard-step-structure",
+      "title": "Standard Step Structure",
+      "order": 2,
+      "rules": [
+        {
+          "id": "step-structure",
+          "type": "rule",
+          "title": "All projects follow a consistent numbered step layout",
+          "body": "The 'what it should do' part will vary by project but this is a general guide for standard projects.",
+          "table": {
+            "headers": ["Step", "What it should do"],
+            "rows": [
+              ["Step 0", "Library setup, macro definitions, Excel imports — nothing analytical"],
+              ["Step 1", "Member / denominator population table creation"],
+              ["Step 2", "Claims pull of interest, cleaning"],
+              ["Step 3", "Event creation, flagging, filtering"],
+              ["Step 4", "Analytical output table creation"]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "versioning-convention",
+      "title": "Versioning Convention",
+      "order": 3,
+      "rules": [
+        {
+          "id": "versioning",
+          "type": "rule",
+          "title": "File versioning standard",
+          "body": "Consistent versioning keeps the team aligned on which program is current.",
+          "list": [
+            "New iterations: append v0.x YYYYMMDD to the filename",
+            "Move the prior version into an 'old versions' subfolder",
+            "Never overwrite existing programs in place"
+          ]
+        }
+      ]
+    }
+  ]
+}

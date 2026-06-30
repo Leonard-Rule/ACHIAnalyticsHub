@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Status" subtitle="Success, warning, danger, info with tint pairings" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--surface-page); font-family: var(--font-body); }
+  .row { display: flex; gap: 14px; }
+  .sw { flex: 1; }
+  .pair { display:flex; height: 60px; border-radius: var(--radius-md); overflow:hidden; border:1px solid rgba(0,0,0,.06); }
+  .solid { flex: 1.4; }
+  .tint { flex: 1; }
+  .name { font-weight: var(--fw-semibold); font-size: 13px; color: var(--text-strong); margin-top: 8px; }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="pair"><div class="solid" style="background:var(--achi-success)"></div><div class="tint" style="background:var(--achi-success-bg)"></div></div><div class="name">Success</div><div class="hex">#1f8a5b</div></div>
+    <div class="sw"><div class="pair"><div class="solid" style="background:var(--achi-warning)"></div><div class="tint" style="background:var(--achi-warning-bg)"></div></div><div class="name">Warning</div><div class="hex">#c9831f</div></div>
+    <div class="sw"><div class="pair"><div class="solid" style="background:var(--achi-danger)"></div><div class="tint" style="background:var(--achi-danger-bg)"></div></div><div class="name">Danger</div><div class="hex">#c0392b</div></div>
+    <div class="sw"><div class="pair"><div class="solid" style="background:var(--achi-info)"></div><div class="tint" style="background:var(--achi-info-bg)"></div></div><div class="name">Info</div><div class="hex">#0a78bf</div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!-- @dsCard group="Components" viewport="700x440" name="Core — Buttons, Tags, Forms" subtitle="Buttons, tags, badges, inputs, checkbox, switch" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-page); font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 32px; }
+  .block .achi-eyebrow { margin-bottom: 12px; display:block; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel">
+    const { Button, Tag, Badge, Input, Checkbox, Switch } = window.ACHIDesignSystem_cd4297;
+    function Demo() {
+      return (
+        <div className="grid">
+          <div className="block">
+            <span className="achi-eyebrow">Buttons</span>
+            <div className="stack">
+              <div className="row">
+                <Button variant="primary">Read report</Button>
+                <Button variant="accent">Subscribe</Button>
+                <Button variant="secondary">Learn more</Button>
+              </div>
+              <div className="row">
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="link" href="#">See more publications →</Button>
+              </div>
+              <div className="row">
+                <Button variant="primary" size="sm">Small</Button>
+                <Button variant="primary" size="md">Medium</Button>
+                <Button variant="primary" size="lg">Large</Button>
+                <Button variant="primary" disabled>Disabled</Button>
+              </div>
+            </div>
+          </div>
+          <div className="block">
+            <span className="achi-eyebrow">Tags & badges</span>
+            <div className="stack">
+              <div className="row">
+                <Tag color="teal">Maternal &amp; Infant Health</Tag>
+                <Tag color="navy">Arkansas Medicaid</Tag>
+                <Tag color="maroon">Rural Health</Tag>
+                <Tag color="neutral">Blog</Tag>
+              </div>
+              <div className="row">
+                <Badge tone="success" dot>Updated</Badge>
+                <Badge tone="info">New</Badge>
+                <Badge tone="warning">Embargoed</Badge>
+                <Badge tone="danger">Retracted</Badge>
+              </div>
+            </div>
+          </div>
+          <div className="block">
+            <span className="achi-eyebrow">Inputs</span>
+            <div className="stack">
+              <Input label="Email" placeholder="you@example.com" hint="Weekly roundup." />
+              <Input label="ZIP" defaultValue="ABC" error="Enter a valid Arkansas ZIP." />
+            </div>
+          </div>
+          <div className="block">
+            <span className="achi-eyebrow">Selection</span>
+            <div className="stack">
+              <Checkbox label="Subscribe to the weekly roundup" defaultChecked />
+              <Checkbox type="radio" name="t" label="Maternal &amp; infant health" defaultChecked />
+              <Checkbox type="radio" name="t" label="Oral health" />
+              <Switch label="Email me new publications" defaultChecked />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>

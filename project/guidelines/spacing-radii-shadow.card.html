@@ -1,0 +1,34 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radii & Shadows" subtitle="Corner radii and the cool-gray elevation system" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-subtle); font-family: var(--font-body); display:flex; gap: 40px; }
+  .group { display:flex; gap: 16px; }
+  .box { width: 64px; height: 64px; background: var(--surface-card); border: 1px solid var(--border-subtle); display:flex; align-items:flex-end; justify-content:center; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); padding-bottom: 4px; }
+  .sb { border: 0; }
+</style>
+</head>
+<body>
+  <div>
+    <div class="achi-eyebrow" style="margin-bottom:10px">Radii</div>
+    <div class="group">
+      <div class="box" style="border-radius:var(--radius-sm)"><span class="lbl">sm 6</span></div>
+      <div class="box" style="border-radius:var(--radius-md)"><span class="lbl">md 10</span></div>
+      <div class="box" style="border-radius:var(--radius-lg)"><span class="lbl">lg 16</span></div>
+      <div class="box" style="border-radius:var(--radius-pill)"><span class="lbl">pill</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="achi-eyebrow" style="margin-bottom:10px">Elevation</div>
+    <div class="group">
+      <div class="box sb" style="border-radius:var(--radius-md);box-shadow:var(--shadow-sm)"><span class="lbl">sm</span></div>
+      <div class="box sb" style="border-radius:var(--radius-md);box-shadow:var(--shadow-md)"><span class="lbl">md</span></div>
+      <div class="box sb" style="border-radius:var(--radius-md);box-shadow:var(--shadow-lg)"><span class="lbl">lg</span></div>
+    </div>
+  </div>
+</body>
+</html>

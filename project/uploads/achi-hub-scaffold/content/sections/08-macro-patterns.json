@@ -1,0 +1,59 @@
+{
+  "id": "macro-patterns",
+  "title": "Macro Patterns",
+  "icon": "ti-code",
+  "order": 8,
+  "subsections": [
+    {
+      "id": "year-loops",
+      "title": "Year Loops",
+      "order": 1,
+      "rules": [
+        {
+          "id": "year-loop-rule",
+          "type": "rule",
+          "title": "Use %do %while with %scan for year iteration",
+          "body": "Use %do %while with %scan for iterating over year lists. Macro variables should be defined globally before macro calls. Macro-ize the year variable so all years run through identical logic.",
+          "snippet_ref": "year-loop-pattern"
+        }
+      ]
+    },
+    {
+      "id": "multi-year-pulls",
+      "title": "Macro-izing Year in Multi-Year Pulls",
+      "order": 2,
+      "rules": [
+        {
+          "id": "multi-year-rule",
+          "type": "rule",
+          "title": "Structure for multi-year diagnostic counts",
+          "body": "When a project needs counts across multiple years, macro-ize the year variable so each year is driven by the same logic.",
+          "list": [
+            "2024: commercial/MCD counts only (Medicare FFS offset year — no FFS for 2024)",
+            "2023: commercial/MCD counts + Medicare FFS counts + combined total",
+            "2022: same as 2023",
+            "2021: same as 2023"
+          ],
+          "callout": {
+            "type": "tip",
+            "title": "Member vs. Person Counting",
+            "body": "When doing quick counts using newid (member ID), the same person can appear more than once if they have multiple member IDs. This is acceptable for trend analysis but should be documented. This is counting 'members' not 'people'. Full de-duplication to studyid is required for population-level headcounts."
+          }
+        }
+      ]
+    },
+    {
+      "id": "correlated-subqueries",
+      "title": "Avoid Correlated Subqueries",
+      "order": 3,
+      "rules": [
+        {
+          "id": "correlated-rule",
+          "type": "danger",
+          "title": "Correlated EXISTS / NOT EXISTS subqueries are expensive",
+          "body": "Correlated subqueries re-evaluate for every row in the outer query against a large claims table. Pre-build small lookup tables and replace with LEFT JOIN + IS NULL. This can dramatically reduce macro runtime on large claims tables."
+        }
+      ]
+    }
+  ]
+}

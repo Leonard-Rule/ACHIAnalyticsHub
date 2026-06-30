@@ -1,0 +1,21 @@
+{
+  "id": "project-notes",
+  "title": "Project-Specific Notes",
+  "icon": "ti-folder",
+  "order": 10,
+  "subsections": [
+    {
+      "id": "all-projects",
+      "title": "All Projects",
+      "order": 1,
+      "rules": [
+        {
+          "id": "project-notes-intro",
+          "type": "rule",
+          "title": "Select a project to view its checklist",
+          "body": "Each project has a set of specific notes, reminders, and rules that apply to that work. These are maintained separately from the general standards above."
+        }
+      ]
+    }
+  ]
+}
