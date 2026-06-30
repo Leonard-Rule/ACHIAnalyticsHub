@@ -18,7 +18,7 @@
 
 # Cache static assets aggressively
 [[headers]]
-  for = "/site/app.js"
+  for = "/app.js"
   [headers.values]
     Cache-Control = "public, max-age=86400"
 

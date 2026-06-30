@@ -70,7 +70,7 @@ async function loadSections() {
   ];
 
   const results = await Promise.allSettled(
-    filenames.map(f => fetch(`../content/sections/${f}.json`).then(r => r.json()))
+    filenames.map(f => fetch(`content/sections/${f}.json`).then(r => r.json()))
   );
 
   State.sections = results
@@ -81,7 +81,7 @@ async function loadSections() {
 
 async function loadProjects() {
   try {
-    const res = await fetch('../content/projects/all-projects.json');
+    const res = await fetch('content/projects/all-projects.json');
     State.projects = await res.json();
   } catch (e) {
     console.warn('Could not load projects:', e);
@@ -91,7 +91,7 @@ async function loadProjects() {
 
 async function loadSnippets() {
   try {
-    const res = await fetch('../content/snippets/manifest.json');
+    const res = await fetch('content/snippets/manifest.json');
     const manifest = await res.json();
     State.snippets = manifest;
 
@@ -101,7 +101,7 @@ async function loadSnippets() {
         .filter(s => s.file && s.status === 'active')
         .map(async s => {
           try {
-            const r = await fetch(`../content/snippets/${s.file}`);
+            const r = await fetch(`content/snippets/${s.file}`);
             State.snippetCode[s.id] = await r.text();
           } catch (e) {
             console.warn(`Could not load snippet: ${s.file}`);

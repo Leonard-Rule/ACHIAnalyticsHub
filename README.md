@@ -212,7 +212,7 @@ no refactoring required.
 
 ## Local development
 
-No build step needed. Run a local static server:
+No build step needed. Run a local static server from the `site/` directory:
 
 ```bash
 # Python (built in)
@@ -225,13 +225,10 @@ npx serve site -l 8080
 
 Then open `http://localhost:8080`.
 
-Note: the site fetches `../content/...` relative paths, so serve from
-the `site/` directory and make sure `content/` is accessible at `../content/`.
-
 A simple approach for local dev:
 ```bash
 # From repo root
-python3 -m http.server 8080
+cd site && python3 -m http.server 8080
 # Then open http://localhost:8080/site/
 ```
 
