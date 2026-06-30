@@ -218,12 +218,20 @@ function renderSidebar() {
       subList.appendChild(subItem);
     });
 
-    groupLabel.addEventListener('click', () => {
+    // Chevron: toggle expand/collapse only
+    groupLabel.querySelector('.nav-chevron').addEventListener('click', e => {
+      e.stopPropagation();
       const open = !subList.hidden;
       subList.hidden = open;
       groupLabel.setAttribute('aria-expanded', String(!open));
       groupLabel.classList.toggle('open', !open);
-      // Navigate to section home on every click
+    });
+
+    // Label (non-chevron area): navigate to section home + expand
+    groupLabel.addEventListener('click', () => {
+      subList.hidden = false;
+      groupLabel.setAttribute('aria-expanded', 'true');
+      groupLabel.classList.add('open');
       navigateSectionHome(section);
       setActiveNav(groupLabel);
     });
