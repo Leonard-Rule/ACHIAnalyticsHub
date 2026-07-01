@@ -1,6 +1,6 @@
 {
   "id": "provider-taxonomy",
-  "title": "Provider & Clinic Taxonomy",
+  "title": "Provider & Clinic Types",
   "icon": "ti-building-hospital",
   "order": 9,
   "subsections": [
@@ -13,7 +13,7 @@
           "id": "taxonomy-intro",
           "type": "rule",
           "title": "Three clinic types frequently appear in APCD and claims analysis",
-          "body": "These types are often confused. Key differences are in how they are funded, how they are identified in claims, and what services they provide."
+          "body": "Key differences are in how they are funded, how they are identified in claims, and what services they provide."
         }
       ],
       "taxonomy_cards": [
