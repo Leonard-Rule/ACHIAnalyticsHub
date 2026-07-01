@@ -445,6 +445,15 @@ function renderSectionHome(section) {
     list.appendChild(item);
   });
   area.appendChild(list);
+
+  const addBtn = el('button', {class: 'section-add-btn'});
+  addBtn.innerHTML = `<span class="icon ti-plus" aria-hidden="true"></span> Add item`;
+  addBtn.addEventListener('click', () => {
+    const subject = `Add item in ${section.title} section`;
+    const body = [`**Section:** ${section.title}`, ``, `**Describe what you'd like to add:**`, ``].join('\n');
+    window.open(feedbackUrl(subject, body), '_blank');
+  });
+  area.appendChild(addBtn);
 }
 
 // ─── Section rendering ───────────────────────────────────────────────────────
