@@ -17,20 +17,6 @@
           "snippet_ref": "classify-professional-facility"
         }
       ]
-    },
-    {
-      "id": "inpatient-outpatient",
-      "title": "Classify Inpatient vs. Outpatient",
-      "order": 2,
-      "rules": [
-        {
-          "id": "inp-outp-snippet",
-          "type": "placeholder",
-          "title": "Inpatient vs. Outpatient Classification",
-          "body": "Code snippet to be added. This section will contain the logic for classifying claims as inpatient or outpatient using revenue codes, bill type, and place of service.",
-          "snippet_ref": "classify-inpatient-outpatient"
-        }
-      ]
     }
   ]
 }

@@ -128,19 +128,19 @@
   {
     "id": "payer-assignment-dental",
     "title": "Dental Payer Assignment",
-    "file": null,
+    "file": "payer-assignment-dental.sas",
     "language": "sas",
     "section_ref": "member-enrollment/payer-assignment-dental",
-    "status": "placeholder",
+    "status": "active",
     "tags": ["payer", "dental", "ddarf"]
   },
   {
     "id": "race-ethnicity-sex",
     "title": "Race / Ethnicity / Sex Assignment",
-    "file": null,
+    "file": "race-ethnicity-sex.sas",
     "language": "sas",
     "section_ref": "member-enrollment/race-ethnicity-sex",
-    "status": "placeholder",
+    "status": "active",
     "tags": ["demographics", "race", "ethnicity", "sex"]
   },
   {
@@ -169,5 +169,14 @@
     "section_ref": "validation-practices/row-count-comments",
     "status": "active",
     "tags": ["validation", "row-count", "documentation"]
+  },
+  {
+    "id": "nested-dates-removal",
+    "title": "Remove nested dates and create visit sequences",
+    "file": "nested-dates-removal.sas",
+    "language": "sas",
+    "section_ref": "concurrent-claims/nested-dates",
+    "status": "active",
+    "tags": ["concurrent-claims", "nested-dates", "sequences", "gaps"]
   }
 ]
