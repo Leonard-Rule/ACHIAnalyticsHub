@@ -13,7 +13,6 @@
       from apcdclms.claims&yr.
       where year(dateofservicefrom) = &yr.;
     quit;
-    /* N = _____ rows for &yr. */
 
     %let i = %eval(&i. + 1);
   %end;
