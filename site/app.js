@@ -14,6 +14,9 @@
 
 'use strict';
 
+const GITHUB_REPO = 'Leonard-Rule/ACHIAnalyticsHub';
+const GITHUB_BASE = `https://github.com/${GITHUB_REPO}`;
+
 // ─── State ───────────────────────────────────────────────────────────────────
 
 const State = {
@@ -423,7 +426,7 @@ function renderSection(section, subId) {
 
     // Render rules
     (sub.rules || []).forEach(rule => {
-      subSection.appendChild(renderRuleCard(rule));
+      subSection.appendChild(renderRuleCard(rule, section, sub));
     });
 
     // Render taxonomy cards if present
@@ -462,7 +465,7 @@ function renderSection(section, subId) {
 
 // ─── Rule card rendering ─────────────────────────────────────────────────────
 
-function renderRuleCard(rule) {
+function renderRuleCard(rule, section, sub) {
   const tpl = document.getElementById('tpl-rule-card').content.cloneNode(true);
   const card = tpl.querySelector('.rule-card');
 
@@ -549,9 +552,19 @@ function renderRuleCard(rule) {
     slot.replaceWith(renderSnippet(rule.snippet_ref));
   }
 
-  // Flag button
+  // Flag button → open GitHub issue pre-filled with context
   card.querySelector('.flag-btn').addEventListener('click', () => {
-    showToast('Flagging coming soon — this will open a GitHub Issue');
+    const title = `FLAG: ${rule.title}`;
+    const body = [
+      `**Section:** ${section ? section.title : '—'}`,
+      `**Subsection:** ${sub ? sub.title : '—'}`,
+      `**Rule:** ${rule.title}`,
+      ``,
+      `**What's outdated or incorrect:**`,
+      `<!-- Describe what needs to be updated -->`,
+    ].join('\n');
+    const url = `${GITHUB_BASE}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=outdated`;
+    window.open(url, '_blank');
   });
 
   return card;
@@ -580,7 +593,16 @@ function renderSnippet(snippetId) {
     });
 
     block.querySelector('.contribute-btn').addEventListener('click', () => {
-      const url = `https://github.com/YOUR_ORG/achi-hub/issues/new?title=Add+snippet:+${encodeURIComponent(meta.title)}&labels=snippet-contribution&body=**Snippet+ID:**+${meta.id}%0A%0A**Suggested+code:**%0A%0A\`\`\`sas%0A%0A\`\`\``;
+      const body = [
+        `**Code ID:** ${meta.id}`,
+        `**Title:** ${meta.title}`,
+        ``,
+        `**Suggested code:**`,
+        '```sas',
+        '',
+        '```',
+      ].join('\n');
+      const url = `${GITHUB_BASE}/issues/new?title=${encodeURIComponent(`Add code: ${meta.title}`)}&body=${encodeURIComponent(body)}&labels=code-contribution`;
       window.open(url, '_blank');
     });
 
@@ -606,7 +628,7 @@ function renderSnippet(snippetId) {
   });
 
   block.querySelector('.suggest-btn').addEventListener('click', () => {
-    const url = `https://github.com/YOUR_ORG/achi-hub/issues/new?title=Suggest+edit:+${encodeURIComponent(meta.title)}&labels=snippet-edit&body=**Snippet+ID:**+${meta.id}%0A%0A**Suggested+change:**`;
+    const url = `${GITHUB_BASE}/edit/main/site/content/snippets/${meta.file}`;
     window.open(url, '_blank');
   });
 
@@ -832,7 +854,7 @@ function bindSearch() {
       results.innerHTML = `
         <div class="search-empty">
           No results for "${input.value}"
-          <a class="search-suggest-link" href="https://github.com/YOUR_ORG/achi-hub/issues/new?title=Add+content:+${encodeURIComponent(input.value)}&labels=content-request" target="_blank">
+          <a class="search-suggest-link" href="${GITHUB_BASE}/issues/new?title=${encodeURIComponent(`Add content: ${input.value}`)}&labels=content-request" target="_blank">
             Suggest adding this topic →
           </a>
         </div>`;
