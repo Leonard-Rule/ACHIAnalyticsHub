@@ -14,7 +14,7 @@
           "dont": "Assume row count = distinct ID count without checking"
         },
         {
-          "do": "Comment-out log row counts next to table creation code",
+          "do": "Log row counts as commented-out counts next to table creation code",
           "dont": "Skip row count documentation"
         },
         {
@@ -32,26 +32,6 @@
         {
           "do": "Include Medicare FFS in concurrent claim pulls",
           "dont": "Pull only APCD claims for concurrency checks"
-        },
-        {
-          "do": "Use UNION ALL when stacking yearly tables",
-          "dont": "Use UNION — it silently deduplicates"
-        },
-        {
-          "do": "Put date filters on joined tables in the ON clause",
-          "dont": "Put right-table date filters in the WHERE clause"
-        },
-        {
-          "do": "Use explicit parentheses in complex WHERE / CASE conditions",
-          "dont": "Rely on implicit AND / OR precedence"
-        },
-        {
-          "do": "Macro-ize year variable for multi-year pulls",
-          "dont": "Hard-code years in repeated code blocks"
-        },
-        {
-          "do": "Use native tables for frequently referenced member data",
-          "dont": "Use SAS views for repeated lookups"
         }
       ]
     }
