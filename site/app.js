@@ -305,27 +305,22 @@ function renderHome() {
   const area = document.getElementById('content-area');
   area.innerHTML = '';
 
-  area.appendChild(el('h1', {class: 'page-title'}, 'ACHI Analyst Reference Hub'));
+  area.appendChild(el('h1', {class: 'page-title'}, 'ACHI Analytics Hub'));
   area.appendChild(el('p', {class: 'page-subtitle'},
     'Your go-to reference for analytical standards, SAS code, and project guidance.'));
 
   // Analytics Tip of the Day — rotates daily
   const TIPS = [
-    { label: 'SELECT DISTINCT by default', desc: 'Use SELECT DISTINCT in nearly every PROC SQL query unless you have a documented reason not to. It surfaces unintended fan-out early — if your row count exceeds your distinct ID count, something is causing duplication.', nav: ['sql-best-practices', 'select-distinct'], badge: 'rule' },
-    { label: 'Avoid NODUPKEY for ranked rows', desc: "PROC SORT with NODUPKEY keeps an arbitrary row — it doesn't let you choose which. Use FIRST. logic after sorting by your ranking variable to reliably select the top-ranked row per ID.", nav: ['ids-deduplication', 'deduplication'], badge: 'remember' },
-    { label: 'Three-condition date overlap', desc: 'To find concurrent claims, check: start1 ≤ end2 AND end1 ≥ start2. The narrow approach (start1 ≤ start2 ≤ end1) misses cases where the second claim fully contains the first.', nav: ['concurrent-claims', 'date-overlap-definition'], badge: 'remember' },
+    { label: 'SELECT DISTINCT by default', desc: 'Use SELECT DISTINCT in your PROC SQL queries unless you have a documented reason not to. It surfaces unintended fan-out early — if your row count exceeds your distinct ID count, something is causing duplication.', nav: ['sql-best-practices', 'select-distinct'], badge: 'remember' },
+    { label: 'Avoid NODUPKEY for ranked rows', desc: "PROC SORT with NODUPKEY makes it hard to keep track of which rows are dropped. Use FIRST. logic after sorting by your ranking variable to reliably select the top-ranked row per ID.", nav: ['ids-deduplication', 'deduplication'], badge: 'remember' },
     { label: 'Pull claims with an inline subquery', desc: 'Pull claims using an inline subquery in the WHERE clause first, then join for additional fields. Never pull entire claim lines — use &med_varis. to select only the variables you need.', nav: ['sql-best-practices', 'claim-pull-pattern'], badge: 'rule' },
-    { label: 'Log your row counts', desc: 'Add a commented-out row count from the SAS log next to the code that created each key table. Validators can then confirm they are reproducing the same result without re-running the whole program.', nav: ['sql-best-practices', 'select-distinct'], badge: 'rule' },
+    { label: 'Log your row counts', desc: 'Add a commented-out row count from the SAS log next to the code that created each key table. Validators can then confirm they are reproducing the same result.', nav: ['sql-best-practices', 'select-distinct'], badge: 'rule' },
     { label: 'FIRST. dedup — pick the ranked row', desc: 'Sort by ID and your ranking variable, then use a Data Step with FIRST.id to keep only the top row per ID. This gives you full control over which record is retained.', nav: ['ids-deduplication', 'single-row-per-id'], badge: 'rule' },
-    { label: 'County of residence via ZIP crosswalk', desc: 'Assign county using a ZIP-to-county crosswalk table. Join on ZIP code and prefer the crosswalk entry with the highest population share when a ZIP spans multiple counties.', nav: ['member-enrollment', 'county-residence'], badge: 'rule' },
     { label: 'Year loops with %do %while', desc: 'Use %do %while with %scan to iterate over a space-separated list of years. This makes it easy to add or remove years without renumbering loop indices.', nav: ['macro-patterns', 'year-loops'], badge: 'rule' },
     { label: 'Standardize your folder structure', desc: 'All project work lives on G:\\ or R:\\. Create the primary project folder before the project starts and place a "Previous Versions" subfolder inside it from day one.', nav: ['code-structure', 'analytics-folder-structure'], badge: 'rule' },
-    { label: 'SSD drive for faster SAS runs', desc: 'Point your WORK library and temp output to the local SSD drive (E:\\SSDDRIVE) via sasv9.cfg. This can dramatically reduce I/O wait time on large claims pulls.', nav: ['code-structure', 'library-path-setup'], badge: 'rule' },
-    { label: 'Date filters belong in ON, not WHERE', desc: "When filtering a right-side table in a LEFT JOIN, put date conditions in the ON clause — not the WHERE clause. A WHERE filter turns your LEFT JOIN into an INNER JOIN, dropping unmatched left rows.", nav: ['sql-best-practices', 'claim-pull-pattern'], badge: 'remember' },
-    { label: 'Classify claims before aggregating', desc: 'Determine professional vs. facility and inpatient vs. outpatient before any aggregation step. Mixing claim types in a single sum will overcount costs and distort utilization rates.', nav: ['claims-classification', 'professional-facility'], badge: 'remember' },
+    { label: 'Check the claims classification tab for tips on labeling claims', desc: 'professional/facility or inpatient/outpatient and more.', nav: ['claims-classification', 'professional-facility'], badge: 'remember' },
     { label: 'Payer assignment priority order', desc: 'When a member has multiple coverage records on the same date, follow the documented priority order: Medicare > Medicaid > Commercial. Applying the wrong payer inflates or deflates attributed spend.', nav: ['member-enrollment', 'payer-assignment-medical'], badge: 'remember' },
-    { label: 'Use Step 0 for all library setup', desc: 'Put every %let, libname, and global macro variable definition in a dedicated Step 0 file. Include it at the top of every program so paths never need to be changed in more than one place.', nav: ['code-structure', 'library-path-setup'], badge: 'rule' },
-    { label: 'Validate with row count comments', desc: 'After each key data step or PROC SQL, add a comment with the output row count from the log: /* n = 1,234,567 */. This gives the next analyst an instant sanity check without re-running the code.', nav: ['validation-practices', 'row-count-comments'], badge: 'rule' },
+    { label: 'Use Step 0 for all library setup', desc: 'Put every %let, libname, and global macro variable definition in a dedicated Step 0 file. Include it at the top of every program so paths never need to be changed in more than one place.', nav: ['code-structure', 'library-path-setup'], badge: 'rule' }
   ];
 
   const today = new Date();
