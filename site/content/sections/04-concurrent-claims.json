@@ -2,7 +2,7 @@
   "id": "concurrent-claims",
   "title": "Concurrent / Encompassing Claims Logic",
   "icon": "ti-calendar-event",
-  "order": 4,
+  "order": 5,
   "subsections": [
     {
       "id": "date-overlap-definition",
@@ -28,8 +28,7 @@
             "type": "tip",
             "title": "Example",
             "body": "Event: Jan 15 – Jan 15. Concurrent facility claim: Jan 14 – Jan 16. The correct logic catches this; the incorrect logic misses it because the claim starts before the event."
-          },
-          "decision_tree_ref": "concurrent-claims-tree"
+          }
         }
       ]
     },
@@ -43,59 +42,6 @@
           "type": "rule",
           "title": "Always include Medicare FFS alongside APCD claims",
           "body": "When pulling concurrent claims to find unassigned events that might have a facility claim, always include Medicare FFS claims in addition to commercial/Medicaid APCD claims. Missing FFS concurrent claims means some assignable events go unmatched."
-        }
-      ]
-    }
-  ],
-  "decision_trees": [
-    {
-      "id": "concurrent-claims-tree",
-      "title": "Is this claim concurrent with my event?",
-      "description": "Walk through the three date overlap conditions to determine if a claim is concurrent with your event of interest.",
-      "nodes": [
-        {
-          "id": "start",
-          "type": "start",
-          "text": "Do you have a claim to test against an event window?",
-          "yes": "condition-1",
-          "no": null
-        },
-        {
-          "id": "condition-1",
-          "type": "decision",
-          "text": "Does the claim's FROM date fall within the event window?",
-          "condition": "claim.from >= event.start AND claim.from <= event.end",
-          "yes": "concurrent-yes",
-          "no": "condition-2"
-        },
-        {
-          "id": "condition-2",
-          "type": "decision",
-          "text": "Does the claim's THRU date fall within the event window?",
-          "condition": "claim.thru >= event.start AND claim.thru <= event.end",
-          "yes": "concurrent-yes",
-          "no": "condition-3"
-        },
-        {
-          "id": "condition-3",
-          "type": "decision",
-          "text": "Does the claim's date range SPAN the entire event window?",
-          "condition": "claim.from <= event.start AND claim.thru >= event.end",
-          "yes": "concurrent-yes",
-          "no": "concurrent-no"
-        },
-        {
-          "id": "concurrent-yes",
-          "type": "result-success",
-          "text": "Claim IS concurrent with the event",
-          "body": "Include this claim in your concurrent claims pull. Use the three-condition WHERE logic in your SAS code.",
-          "snippet_ref": "date-overlap-correct"
-        },
-        {
-          "id": "concurrent-no",
-          "type": "result-fail",
-          "text": "Claim is NOT concurrent with the event",
-          "body": "This claim does not overlap with the event window under any of the three conditions. It should not be included in the concurrent claims pull."
         }
       ]
     }

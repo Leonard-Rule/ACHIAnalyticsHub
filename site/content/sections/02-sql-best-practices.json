@@ -31,6 +31,30 @@
           "snippet_ref": "claim-pull-pattern"
         }
       ]
+    },
+    {
+      "id": "deduplication",
+      "title": "Deduplication",
+      "order": 3,
+      "rules": [
+        {
+          "id": "nodupkey-avoid",
+          "type": "remember",
+          "title": "Avoid PROC SORT NODUPKEY as a general rule",
+          "body": "NODUPKEY silently drops rows and makes it hard to know what was lost. It is only appropriate when the deduplication grain is fully understood and intentional."
+        },
+        {
+          "id": "first-logic",
+          "type": "tip",
+          "title": "Use FIRST. DATA step logic for top-ranked row per ID",
+          "body": "Sort by studyid and the ranking variable, then use FIRST.studyid in a DATA step to retain exactly one record per ID.",
+          "list": [
+            "Step 1 — Sort by studyid, then ranking variable (ascending or descending as needed)",
+            "Step 2 — Use a DATA step with FIRST.studyid logic to retain only the first record per studyid"
+          ],
+          "snippet_ref": "first-dedup"
+        }
+      ]
     }
   ]
 }

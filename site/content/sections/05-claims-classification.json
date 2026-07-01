@@ -2,7 +2,7 @@
   "id": "claims-classification",
   "title": "Claims Classification",
   "icon": "ti-tags",
-  "order": 5,
+  "order": 6,
   "subsections": [
     {
       "id": "professional-facility",
