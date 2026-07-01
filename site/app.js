@@ -409,6 +409,11 @@ function renderSectionHome(section) {
   const area = document.getElementById('content-area');
   area.innerHTML = '';
 
+  if (section.id === 'project-notes') {
+    renderPlanningWorkspace(area);
+    return;
+  }
+
   const titleEl = el('h1', {class: 'page-title'});
   titleEl.innerHTML = `<span class="icon ${section.icon || 'ti-file'}" style="font-size:34px;vertical-align:-.1em;margin-right:14px;color:var(--teal)"></span>${section.title}`;
   area.appendChild(titleEl);
@@ -438,8 +443,8 @@ function renderSection(section, subId) {
   area.innerHTML = '';
 
   // Special rendering for project notes section
-  if (section.id === 'project-notes' || section.id.includes('project')) {
-    renderProjectNotes(area, subId);
+  if (section.id === 'project-notes') {
+    renderPlanningWorkspace(area);
     return;
   }
 
@@ -754,50 +759,155 @@ function renderTaxonomyCard(card) {
   return div;
 }
 
-// ─── Project notes ───────────────────────────────────────────────────────────
+// ─── Planning workspace ──────────────────────────────────────────────────────
 
-function renderProjectNotes(area, activeProjectId) {
-  area.appendChild(el('h1', {class: 'page-title'}, 'Project-Specific Notes'));
+function renderPlanningWorkspace(area) {
+  const titleEl = el('h1', {class: 'page-title'});
+  titleEl.innerHTML = `<span class="icon ti-folder" style="font-size:34px;vertical-align:-.1em;margin-right:14px;color:var(--teal)"></span>Planning Workspace`;
+  area.appendChild(titleEl);
 
-  const chipRow = el('div', {class: 'project-chips'});
-  const noteAreas = {};
+  const layout = el('div', {class: 'planning-layout'});
 
-  const defaultProject = activeProjectId || (State.projects[0] && State.projects[0].id);
+  // ── Search panel (left) ──
+  const searchPanel = el('div', {class: 'planning-search-panel'});
+  searchPanel.appendChild(el('h2', {class: 'planning-panel-title'}, 'Search & Add'));
 
-  State.projects.forEach(project => {
-    const chip = el('button', {class: 'project-chip'});
-    chip.textContent = project.title;
-    if (project.id === defaultProject) chip.classList.add('active');
-
-    const notesDiv = el('div', {class: 'project-notes', hidden: project.id !== defaultProject});
-    notesDiv.id = `proj-${project.id}`;
-
-    const ul = el('ul', {class: 'project-checklist'});
-    project.notes.forEach(note => {
-      const li = el('li', {class: `project-note project-note--${note.type || 'rule'}`});
-      li.textContent = note.text;
-      if (note.link_ref) {
-        const link = el('a', {class: 'note-link', href: `#${note.link_ref}`});
-        link.textContent = ' → See rule';
-        li.appendChild(link);
-      }
-      ul.appendChild(li);
-    });
-    notesDiv.appendChild(ul);
-    noteAreas[project.id] = notesDiv;
-
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('.project-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      Object.values(noteAreas).forEach(n => n.hidden = true);
-      notesDiv.hidden = false;
-    });
-
-    chipRow.appendChild(chip);
-    area.appendChild(notesDiv); // append first so we can reorder
+  const searchInput = el('input', {
+    class: 'planning-search-input',
+    type: 'text',
+    placeholder: 'Search tips, SOPs, snippets…',
+    autocomplete: 'off',
   });
+  searchPanel.appendChild(searchInput);
 
-  area.insertBefore(chipRow, area.querySelector('.project-notes'));
+  const resultsList = el('div', {class: 'planning-results'});
+  searchPanel.appendChild(resultsList);
+
+  // ── Board panel (right) ──
+  const boardPanel = el('div', {class: 'planning-board-panel'});
+  boardPanel.appendChild(el('h2', {class: 'planning-panel-title'}, 'Your Board'));
+
+  const boardArea = el('div', {class: 'planning-board-area'});
+  boardPanel.appendChild(boardArea);
+
+  layout.appendChild(searchPanel);
+  layout.appendChild(boardPanel);
+  area.appendChild(layout);
+
+  // ── Board state ──
+  const boardItems = []; // {key, label, type, section, subsection}
+  let dragSrcIndex = null;
+
+  const emptyState = el('div', {class: 'planning-board-empty'});
+  emptyState.innerHTML = `<span class="icon ti-drag-drop" style="font-size:36px;color:var(--g300)"></span><p>Add items from the search panel on the left</p>`;
+
+  function renderBoard() {
+    boardArea.innerHTML = '';
+    if (boardItems.length === 0) {
+      boardArea.appendChild(emptyState);
+      return;
+    }
+    boardItems.forEach((item, index) => {
+      const card = el('div', {class: 'planning-card', draggable: 'true'});
+      const header = el('div', {class: 'planning-card-header'});
+      header.innerHTML = `
+        <span class="planning-drag-handle icon ti-grip-vertical"></span>
+        <span class="search-result-type search-type--${item.type}">${item.type}</span>
+        <span class="planning-card-title">${item.label}</span>
+      `;
+      const removeBtn = el('button', {class: 'planning-remove-btn', title: 'Remove', 'aria-label': 'Remove'});
+      removeBtn.textContent = '×';
+      removeBtn.addEventListener('click', () => {
+        boardItems.splice(index, 1);
+        renderBoard();
+      });
+      header.appendChild(removeBtn);
+      card.appendChild(header);
+
+      if (item.section) {
+        const meta = el('div', {class: 'planning-card-meta'});
+        meta.textContent = [item.section, item.subsection].filter(Boolean).join(' › ');
+        card.appendChild(meta);
+      }
+
+      // Drag and drop
+      card.addEventListener('dragstart', e => {
+        dragSrcIndex = index;
+        setTimeout(() => card.classList.add('dragging'), 0);
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      card.addEventListener('dragend', () => {
+        card.classList.remove('dragging');
+        boardArea.querySelectorAll('.planning-card.drag-over').forEach(c => c.classList.remove('drag-over'));
+        dragSrcIndex = null;
+      });
+      card.addEventListener('dragover', e => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        boardArea.querySelectorAll('.planning-card.drag-over').forEach(c => c.classList.remove('drag-over'));
+        card.classList.add('drag-over');
+      });
+      card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+      card.addEventListener('drop', e => {
+        e.preventDefault();
+        card.classList.remove('drag-over');
+        if (dragSrcIndex === null || dragSrcIndex === index) return;
+        const [moved] = boardItems.splice(dragSrcIndex, 1);
+        const insertAt = dragSrcIndex < index ? index - 1 : index;
+        boardItems.splice(insertAt, 0, moved);
+        dragSrcIndex = null;
+        renderBoard();
+      });
+
+      boardArea.appendChild(card);
+    });
+  }
+
+  function addItem(entry) {
+    const key = `${entry.label}::${entry.nav || ''}`;
+    if (boardItems.find(i => i.key === key)) return; // no duplicates
+    boardItems.push({key, label: entry.label, type: entry.type, section: entry.section, subsection: entry.subsection});
+    renderBoard();
+  }
+
+  function doSearch(query) {
+    resultsList.innerHTML = '';
+    if (!query.trim()) {
+      resultsList.appendChild(el('div', {class: 'planning-no-results'}, 'Type to search rules, SOPs, and snippets…'));
+      return;
+    }
+    const q = query.toLowerCase();
+    const matches = State.searchIndex.filter(e => e.text.toLowerCase().includes(q)).slice(0, 25);
+    if (matches.length === 0) {
+      resultsList.appendChild(el('div', {class: 'planning-no-results'}, 'No results found.'));
+      return;
+    }
+    matches.forEach(entry => {
+      const row = el('div', {class: 'planning-result-item'});
+      const typeBadge = el('span', {class: `search-result-type search-type--${entry.type}`});
+      typeBadge.textContent = entry.type;
+      const textWrap = el('div', {class: 'planning-result-text'});
+      const labelEl = el('span', {class: 'planning-result-label'});
+      labelEl.textContent = entry.label;
+      textWrap.appendChild(labelEl);
+      if (entry.section) {
+        const metaEl = el('span', {class: 'planning-result-meta'});
+        metaEl.textContent = [entry.section, entry.subsection].filter(Boolean).join(' › ');
+        textWrap.appendChild(metaEl);
+      }
+      const addBtn = el('button', {class: 'planning-add-btn', title: 'Add to board'});
+      addBtn.textContent = '+';
+      addBtn.addEventListener('click', () => addItem(entry));
+      row.appendChild(typeBadge);
+      row.appendChild(textWrap);
+      row.appendChild(addBtn);
+      resultsList.appendChild(row);
+    });
+  }
+
+  searchInput.addEventListener('input', () => doSearch(searchInput.value));
+  renderBoard(); // initial empty board
+  doSearch('');  // initial empty-query hint
 }
 
 // ─── Do/Don't table ──────────────────────────────────────────────────────────

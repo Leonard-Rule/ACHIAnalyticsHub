@@ -573,3 +573,73 @@ button{font-family:inherit}
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important; scroll-behavior:auto!important}
 }
+
+/* ── Planning workspace ───────────────────────────────────────────────────── */
+.planning-layout{display:grid; grid-template-columns:320px 1fr; gap:24px; align-items:start; margin-top:4px}
+.planning-panel-title{font-family:var(--f-display); font-weight:700; font-size:15px; color:var(--text-strong); margin:0 0 12px}
+
+.planning-search-panel{
+  position:sticky; top:16px;
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md);
+  padding:18px; display:flex; flex-direction:column; gap:10px;
+  max-height:calc(100vh - var(--topbar-h) - 80px);
+}
+.planning-search-input{
+  width:100%; box-sizing:border-box; padding:9px 12px;
+  border:1px solid var(--line-2); border-radius:var(--r-sm);
+  font-size:14px; font-family:var(--f-body); color:var(--text-strong);
+  background:var(--g25); outline:none; transition:border-color var(--ease),background var(--ease)
+}
+.planning-search-input:focus{border-color:var(--teal); background:var(--white)}
+
+.planning-results{overflow-y:auto; flex:1; min-height:0; display:flex; flex-direction:column; gap:4px}
+.planning-result-item{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:var(--r-sm); border:1px solid transparent;
+  transition:background var(--ease),border-color var(--ease)
+}
+.planning-result-item:hover{background:var(--mist); border-color:var(--line)}
+.planning-result-text{display:flex; flex-direction:column; gap:2px; min-width:0}
+.planning-result-label{font-size:13px; color:var(--text-strong); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.planning-result-meta{font-size:11px; color:var(--muted); font-family:var(--f-mono); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.planning-add-btn{
+  width:26px; height:26px; border:0; border-radius:var(--r-sm);
+  background:var(--teal); color:#fff; font-size:20px; font-weight:300; line-height:1;
+  cursor:pointer; display:grid; place-items:center; flex-shrink:0;
+  transition:background var(--ease)
+}
+.planning-add-btn:hover{background:var(--navy)}
+.planning-no-results{font-size:13px; color:var(--muted); text-align:center; padding:28px 12px}
+
+.planning-board-panel{min-height:300px}
+.planning-board-area{display:flex; flex-direction:column; gap:10px; min-height:160px}
+.planning-board-empty{
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+  padding:60px 20px; border:2px dashed var(--line-2); border-radius:var(--r-md);
+  color:var(--muted); font-size:14px; text-align:center
+}
+
+.planning-card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md);
+  padding:14px 16px; cursor:grab; user-select:none;
+  transition:box-shadow var(--ease),border-color var(--ease),opacity var(--ease)
+}
+.planning-card:hover{box-shadow:var(--sh-sm); border-color:var(--line-2)}
+.planning-card.dragging{opacity:.35; cursor:grabbing}
+.planning-card.drag-over{border-color:var(--teal); box-shadow:0 0 0 2px var(--teal-100)}
+.planning-card-header{display:flex; align-items:center; gap:8px}
+.planning-drag-handle{color:var(--g300); font-size:16px; flex-shrink:0; cursor:grab}
+.planning-card-title{flex:1; font-size:13.5px; font-weight:600; color:var(--text-strong); font-family:var(--f-display); min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.planning-remove-btn{
+  width:24px; height:24px; flex-shrink:0; border:0; border-radius:var(--r-sm);
+  background:transparent; color:var(--muted); font-size:18px; line-height:1;
+  cursor:pointer; display:grid; place-items:center;
+  transition:background var(--ease),color var(--ease)
+}
+.planning-remove-btn:hover{background:var(--maroon-100); color:var(--maroon-700)}
+.planning-card-meta{margin-top:5px; font-size:11.5px; color:var(--muted); font-family:var(--f-mono); padding-left:24px}
+
+@media (max-width:860px){
+  .planning-layout{grid-template-columns:1fr}
+  .planning-search-panel{position:static; max-height:50vh}
+}

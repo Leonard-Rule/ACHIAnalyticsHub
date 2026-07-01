@@ -14,26 +14,7 @@
           "type": "rule",
           "title": "Use %do %while with %scan for year iteration",
           "body": "Use %do %while with %scan for iterating over year lists. Macro variables should be defined globally before macro calls. Macro-ize the year variable so all years run through identical logic.",
-          "snippet_ref": "year-loop-pattern"
-        }
-      ]
-    },
-    {
-      "id": "multi-year-pulls",
-      "title": "Macro-izing Year in Multi-Year Pulls",
-      "order": 2,
-      "rules": [
-        {
-          "id": "multi-year-rule",
-          "type": "rule",
-          "title": "Structure for multi-year diagnostic counts",
-          "body": "When a project needs counts across multiple years, macro-ize the year variable so each year is driven by the same logic.",
-          "list": [
-            "2024: commercial/MCD counts only (Medicare FFS offset year — no FFS for 2024)",
-            "2023: commercial/MCD counts + Medicare FFS counts + combined total",
-            "2022: same as 2023",
-            "2021: same as 2023"
-          ],
+          "snippet_ref": "year-loop-pattern",
           "callout": {
             "type": "tip",
             "title": "Member vs. Person Counting",
