@@ -11,7 +11,7 @@
       "rules": [
         {
           "id": "payer-medical-snippet",
-          "type": "rule",
+          "type": "code",
           "title": "Assign payer_type for each member per year",
           "body": "This macro pulls medical coverage records from the APCD member table and assigns a payer_type for each member per year. Runs separately for Commercial, Medicaid, Medicare Advantage, and Medicare FFS. Adjust the year list and source table as needed.",
           "snippet_ref": "payer-assignment-medical"
@@ -25,7 +25,7 @@
       "rules": [
         {
           "id": "payer-dental-snippet",
-          "type": "rule",
+          "type": "code",
           "title": "Pull dental coverage for Medicaid and Commercial per year",
           "body": "Pulls Medicaid dental members with age-based plan eligibility filters, then Commercial dental members with the ME020_DentalServicesIndicator flag. Stacks both into a single dent_all_&yr. table. Adjust the year parameter and source table as needed.",
           "snippet_ref": "payer-assignment-dental"
@@ -39,7 +39,7 @@
       "rules": [
         {
           "id": "demographics-snippet",
-          "type": "rule",
+          "type": "code",
           "title": "Stack, classify, and deduplicate race and ethnicity across years",
           "body": "Stacks member records across years, classifies race and ethnicity using ME021 and ME025 codes, replaces MCD QHP race/ethnicity with HCIP values where available, then rank-deduplicates by studyid to produce a single cross-year demographics reference table.",
           "snippet_ref": "race-ethnicity-sex"
@@ -53,7 +53,7 @@
       "rules": [
         {
           "id": "county-rule",
-          "type": "rule",
+          "type": "code",
           "title": "Assign county based on most-recently-updated record per year",
           "body": "County should be assigned based on the most-recently-updated county per year — not per quarter, unless the project requires quarterly granularity. The ZIP-to-county crosswalk is in geoinfo.clean_county_xwalk.",
           "snippet_ref": "county-residence-assignment"

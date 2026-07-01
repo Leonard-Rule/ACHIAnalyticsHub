@@ -11,7 +11,7 @@
       "rules": [
         {
           "id": "newid-rule",
-          "type": "rule",
+          "type": "reference",
           "title": "NewID — member identifier built from submitter + member ID",
           "body": "NewID is the combination of Submitter (ME001) + memberid (ME107), therefore it can be created for any claim. NewIDs are member-level identifiers in the APCD.",
           "callout": {
@@ -29,7 +29,7 @@
       "rules": [
         {
           "id": "studyid-rule",
-          "type": "rule",
+          "type": "reference",
           "title": "StudyID — de-identified person-level identifier",
           "body": "Last name (encrypted as ME998) + Sex + DOB. Also known as Hash_ID (just last name (encrypted as ME998) + DOB). Use cases: link HTI and HDI, follow people over time.",
           "callout": {
@@ -47,7 +47,7 @@
       "rules": [
         {
           "id": "mpid-rule",
-          "type": "rule",
+          "type": "reference",
           "title": "MPID — Master Person ID created by analytics",
           "body": "Created by analytics, reconciles pid and studyid. Can be used to link HTI and HDI, follow people over time. Found in mpid_enrollsegs_25aMMDDtoMMDD."
         }

@@ -471,7 +471,7 @@ function renderRuleCard(rule) {
 
   const badgeLabels = {
     rule: 'SOP', danger: 'DANGER', remember: 'REMEMBER', warning: 'WATCH OUT',
-    tip: 'TIP', placeholder: 'PLACEHOLDER',
+    tip: 'TIP', placeholder: 'PLACEHOLDER', reference: 'REFERENCE', code: 'CODE',
   };
   card.querySelector('.rule-badge').textContent = badgeLabels[rule.type] || 'RULE';
   card.querySelector('.rule-badge').className = `rule-badge badge--${rule.type || 'rule'}`;
