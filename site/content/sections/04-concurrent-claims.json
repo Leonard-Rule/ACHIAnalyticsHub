@@ -6,7 +6,7 @@
   "subsections": [
     {
       "id": "date-overlap-definition",
-      "title": "Correct Date Overlap Definition",
+      "title": "Pulling Concurrent Claims",
       "order": 1,
       "rules": [
         {
