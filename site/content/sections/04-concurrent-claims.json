@@ -1,6 +1,6 @@
 {
   "id": "concurrent-claims",
-  "title": "Concurrent / Encompassing Claims Logic",
+  "title": "Handling Concurrent Claims",
   "icon": "ti-calendar-event",
   "order": 5,
   "subsections": [
