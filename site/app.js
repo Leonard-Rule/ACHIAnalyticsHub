@@ -14,14 +14,12 @@
 
 'use strict';
 
-const GITHUB_REPO = 'Leonard-Rule/ACHIAnalyticsHub';
-const GITHUB_BASE = `https://github.com/${GITHUB_REPO}`;
-
 // ─── State ───────────────────────────────────────────────────────────────────
 
 const State = {
   sections: [],
   snippets: [],        // manifest entries
+  config: {},          // loaded from config.json
   snippetCode: {},     // id -> raw SAS string
   activeSection: null,
   activeSubsection: null,
@@ -34,6 +32,7 @@ const State = {
 
 async function boot() {
   await Promise.all([
+    loadConfig(),
     loadSections(),
     loadSnippets(),
   ]);
@@ -45,6 +44,26 @@ async function boot() {
 }
 
 // ─── Data loading ────────────────────────────────────────────────────────────
+
+async function loadConfig() {
+  try {
+    const res = await fetch('config.json');
+    State.config = await res.json();
+  } catch (e) {
+    console.warn('Could not load config.json:', e);
+    State.config = { github: { repo: '', branch: 'main', snippets_path: 'site/content/snippets' } };
+  }
+}
+
+function ghUrl(path) {
+  const { repo } = State.config.github || {};
+  return repo ? `https://github.com/${repo}/${path}` : '#';
+}
+
+function ghEditUrl(filePath) {
+  const { branch = 'main' } = State.config.github || {};
+  return ghUrl(`edit/${branch}/${filePath}`);
+}
 
 async function loadSections() {
   // Section files are numbered 01-12; fetch them in order
@@ -563,7 +582,7 @@ function renderRuleCard(rule, section, sub) {
       `**What's outdated or incorrect:**`,
       `<!-- Describe what needs to be updated -->`,
     ].join('\n');
-    const url = `${GITHUB_BASE}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=outdated`;
+    const url = ghUrl(`issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=outdated`);
     window.open(url, '_blank');
   });
 
@@ -602,7 +621,7 @@ function renderSnippet(snippetId) {
         '',
         '```',
       ].join('\n');
-      const url = `${GITHUB_BASE}/issues/new?title=${encodeURIComponent(`Add code: ${meta.title}`)}&body=${encodeURIComponent(body)}&labels=code-contribution`;
+      const url = ghUrl(`issues/new?title=${encodeURIComponent(`Add code: ${meta.title}`)}&body=${encodeURIComponent(body)}&labels=code-contribution`);
       window.open(url, '_blank');
     });
 
@@ -628,7 +647,8 @@ function renderSnippet(snippetId) {
   });
 
   block.querySelector('.suggest-btn').addEventListener('click', () => {
-    const url = `${GITHUB_BASE}/edit/main/site/content/snippets/${meta.file}`;
+    const { snippets_path = 'site/content/snippets' } = State.config.github || {};
+    const url = ghEditUrl(`${snippets_path}/${meta.file}`);
     window.open(url, '_blank');
   });
 
@@ -854,7 +874,7 @@ function bindSearch() {
       results.innerHTML = `
         <div class="search-empty">
           No results for "${input.value}"
-          <a class="search-suggest-link" href="${GITHUB_BASE}/issues/new?title=${encodeURIComponent(`Add content: ${input.value}`)}&labels=content-request" target="_blank">
+          <a class="search-suggest-link" href="${ghUrl(`issues/new?title=${encodeURIComponent(`Add content: ${input.value}`)}&labels=content-request`)}" target="_blank">
             Suggest adding this topic →
           </a>
         </div>`;
