@@ -11,9 +11,9 @@
       "rules": [
         {
           "id": "prof-facility-snippet",
-          "type": "placeholder",
-          "title": "Professional vs. Facility Classification",
-          "body": "Code snippet to be added. This section will contain the logic for distinguishing professional claims from facility claims using claim type indicators and bill type codes.",
+          "type": "rule",
+          "title": "Classify claims using MC094_TypeOfClaim and bill type",
+          "body": "Use MC094_TypeOfClaim and MC036_TypeOfBill_Institutional to classify each claim as Inpatient facility, Outpatient facility, Professional, or Other. INP/OUT/PTB map directly; '002' claims are further split by bill type prefix (11 = inpatient, 13/14 = outpatient); '001' = professional.",
           "snippet_ref": "classify-professional-facility"
         }
       ]

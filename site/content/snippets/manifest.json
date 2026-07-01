@@ -101,10 +101,10 @@
   {
     "id": "classify-professional-facility",
     "title": "Professional vs. Facility Classification",
-    "file": null,
+    "file": "classify-professional-facility.sas",
     "language": "sas",
     "section_ref": "claims-classification/professional-facility",
-    "status": "placeholder",
+    "status": "active",
     "tags": ["classification", "claims", "facility", "professional"]
   },
   {
@@ -119,10 +119,10 @@
   {
     "id": "payer-assignment-medical",
     "title": "Medical Payer Assignment",
-    "file": null,
+    "file": "payer-assignment-medical.sas",
     "language": "sas",
     "section_ref": "member-enrollment/payer-assignment-medical",
-    "status": "placeholder",
+    "status": "active",
     "tags": ["payer", "medical", "commercial", "medicaid", "medicare"]
   },
   {

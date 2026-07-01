@@ -11,9 +11,9 @@
       "rules": [
         {
           "id": "payer-medical-snippet",
-          "type": "placeholder",
-          "title": "Medical Payer Assignment",
-          "body": "Code snippet to be added. This section will contain the logic for assigning members to payer categories (Commercial, Medicaid, Medicare) based on plan type and coverage flags.",
+          "type": "rule",
+          "title": "Assign payer_type for each member per year",
+          "body": "This macro pulls medical coverage records from the APCD member table and assigns a payer_type for each member per year. Runs separately for Commercial, Medicaid, Medicare Advantage, and Medicare FFS. Adjust the year list and source table as needed.",
           "snippet_ref": "payer-assignment-medical"
         }
       ]

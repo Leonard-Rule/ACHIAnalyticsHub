@@ -31,19 +31,6 @@
           }
         }
       ]
-    },
-    {
-      "id": "include-ffs",
-      "title": "Include Medicare FFS in Concurrent Claims Pulls",
-      "order": 2,
-      "rules": [
-        {
-          "id": "include-ffs-rule",
-          "type": "rule",
-          "title": "Always include Medicare FFS alongside APCD claims",
-          "body": "When pulling concurrent claims to find unassigned events that might have a facility claim, always include Medicare FFS claims in addition to commercial/Medicaid APCD claims. Missing FFS concurrent claims means some assignable events go unmatched."
-        }
-      ]
     }
   ]
 }
