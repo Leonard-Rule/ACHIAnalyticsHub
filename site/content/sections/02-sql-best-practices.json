@@ -44,7 +44,7 @@
     },
     {
       "id": "select-distinct",
-      "title": "SELECT DISTINCT as the Default",
+      "title": "Select Distinct as the Default",
       "order": 3,
       "rules": [
         {
