@@ -1,13 +1,8 @@
-*============================================================;
-* Part 2: BUILD_RACE_ETHNICITY_GENDER_DOB - Single cross-year reference table
-* Stack fields across all years
-* Then classify race/ethnicity once, deduplicate by studyid
-*============================================================;
 
-*------ STEP 1: STACK RAW FIELDS ------;/*25,439,545*/
+*------ STEP 1: STACK RAW FIELDS ------;/**/
 %macro stack_race(first, last);
 	proc sql;
-		create table member_demographics as /*8,824,589*/
+		create table member_demographics as /**/
 		%do yr=%eval(&first.) %to &last.;
 			%if &yr. ne &first. %then union;
 				select distinct studyid, newid, payer_type
@@ -22,7 +17,7 @@
 %stack_race(2017, 2023)
 
 
-*------ STEP 2: CLASSIFY RACE, ETHNICITY, AND GENDER ------;/*8,824,589*/
+*------ STEP 2: CLASSIFY RACE, ETHNICITY, AND GENDER ------;/**/
 proc sql;
     create table Demographics_classified as
         select distinct studyid, newid, payer_type, ME001_Submitter,
@@ -63,7 +58,7 @@ quit;
 *------ STEP 3: MCD QHP RACE/ETHNICITY REPLACEMENT ------;
 /*replace the MCD QHP race and ethnicity with that of HCIP*/
 proc sql;
-    create table qhp_replacements as /*1,039,349*/
+    create table qhp_replacements as /**/
         select distinct a.studyid, a.newid, a.payer_type, a.ME001_Submitter
 					, b.race, b.racenumber, b.ethnicity, b.ethnicitynumber
         from (select distinct * from Demographics_classified where payer_type = "MCD QHP") a
@@ -100,13 +95,13 @@ quit;
 
 *------ STEP 4: RANK-ORDER DEDUPLICATION — RACE ------;/**/
 proc sql;
-    create table re_race_ranked as /*4,287,289*/
+    create table re_race_ranked as /**/
         select distinct studyid, race, racenumber
         from re_qhp_fixed
         order by studyid, racenumber;
 quit;
 
-data re_race_final;/*3,372,780*/
+data re_race_final;
     set re_race_ranked;
     by studyid racenumber;
     if first.studyid then output;
@@ -115,13 +110,13 @@ run;
 
 *------ STEP 5: RANK-ORDER DEDUPLICATION — ETHNICITY ------;
 proc sql;
-    create table re_eth_ranked as /*4,301,957*/
+    create table re_eth_ranked as /**/
         select distinct studyid, ethnicity, ethnicitynumber
         from re_qhp_fixed
         order by studyid, ethnicitynumber;
 quit;
 
-data re_eth_final; /*3,372,780*/
+data re_eth_final; /**/
     set re_eth_ranked;
     by studyid ethnicitynumber;
     if first.studyid then output;
@@ -130,7 +125,7 @@ run;
 
 *------ STEP 8: COMBINE INTO FINAL REFERENCE TABLE ------;
 proc sql;
-	create table ssdrive.member_demographics_ref as /*6,734,434*/
+	create table ssdrive.member_demographics_ref as /**/
 		select distinct a.studyid, a.newid
 					, a.payer_type
 					, b.race
