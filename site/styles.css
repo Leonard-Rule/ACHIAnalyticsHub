@@ -251,17 +251,22 @@ button{font-family:inherit}
 .home-card-desc{font-size:14px; color:var(--muted); margin-top:5px; padding-right:22px}
 .home-card-arrow{position:absolute; right:18px; bottom:16px; color:var(--g300); font-size:20px; transition:transform var(--ease),color var(--ease)}
 .home-card:hover .home-card-arrow{transform:translateX(3px); color:var(--teal)}
-.home-card--tip{width:100%; margin:24px 0 8px; padding:28px 32px}
-.home-tip-header{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px}
+/* ── Home: top row (Tip of the Day + SAS Joke Break) ──────────────────────── */
+.home-top-row{display:flex; align-items:stretch; gap:16px; margin:24px 0 8px}
+.home-top-row .home-card{margin:0; min-width:0}
+
+.home-card--tip{flex:1.7; padding:28px 32px}
+.home-tip-header{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:16px}
 .home-tip-label{font-family:var(--f-display); font-weight:700; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal)}
 .home-tip-date{font-size:13px; color:var(--muted)}
 .home-card--tip .home-card-title{font-size:22px}
 .home-card--tip .home-card-desc{font-size:16.5px; line-height:1.6; margin-top:10px; padding-right:32px}
 
 /* ── Home: SAS joke card ───────────────────────────────────────────────────── */
-.home-card--joke{width:100%; margin:16px 0 8px; padding:24px 28px; cursor:default}
+.home-card--joke{flex:1; padding:24px 26px; cursor:default; display:flex; flex-direction:column}
 .home-card--joke::before{background:var(--maroon)}
 .home-card--joke:hover{transform:none; box-shadow:var(--sh-xs); border-color:var(--line)}
+.home-card--joke .home-tip-header{flex-direction:column; align-items:flex-start; gap:12px}
 .home-card--joke .home-tip-label{color:var(--maroon-700); display:inline-flex; align-items:center; gap:7px}
 .home-card--joke .home-tip-label .icon{font-size:16px}
 .joke-shuffle-btn{
@@ -274,7 +279,7 @@ button{font-family:inherit}
 .joke-shuffle-btn .icon{font-size:14px; transition:transform .35s var(--ease-out)}
 .joke-shuffle-btn.spinning .icon{transform:rotate(360deg)}
 .joke-text{
-  font-size:16.5px; font-weight:500; color:var(--text-strong); line-height:1.55;
+  font-size:15px; font-weight:500; color:var(--text-strong); line-height:1.55;
   transition:opacity .15s var(--ease);
 }
 .joke-text.joke-fade{opacity:0}
@@ -375,6 +380,14 @@ button{font-family:inherit}
   font-size:13.5px; margin-bottom:3px}
 .callout-body{color:var(--g700)}
 
+/* Dark theme: callout-title/body already repaint light via --text-strong/--g700,
+   so the fixed light-tint backgrounds need a dark-safe counterpart to match. */
+:root[data-theme="dark"] .callout--tip{background:rgba(22,160,179,.16)}
+:root[data-theme="dark"] .callout--warning{background:rgba(201,131,31,.18)}
+:root[data-theme="dark"] .callout--danger{background:rgba(192,57,43,.18)}
+:root[data-theme="dark"] .callout--info{background:rgba(10,120,191,.18)}
+:root[data-theme="dark"] .rule-callout{background:rgba(22,160,179,.16)}
+
 /* Tip box */
 .tip-box{display:flex; align-items:flex-start; gap:10px; margin-top:14px; padding:13px 16px;
   background:var(--teal-100); border-radius:var(--r-sm); font-size:14.5px; color:var(--teal-700)}
@@ -463,6 +476,10 @@ button{font-family:inherit}
 .rule-table tbody th{font-family:var(--f-mono); font-weight:600; color:var(--navy); background:var(--g25); font-size:13px}
 .rule-table tbody tr:last-child th,.rule-table tbody tr:last-child td{border-bottom:0}
 .rule-table tbody tr:hover td,.rule-table tbody tr:hover th{background:var(--mist)}
+
+/* Dark theme: --mist/--g25 go dark, so the fixed dark-navy header text needs a light counterpart */
+:root[data-theme="dark"] .rule-table thead th{color:var(--teal-300)}
+:root[data-theme="dark"] .rule-table tbody th{color:var(--teal-300)}
 
 /* ── Decision tree ────────────────────────────────────────────────────────── */
 .decision-tree{margin-top:18px; border:1px solid var(--line-2); border-radius:var(--r-lg); overflow:hidden;
@@ -603,6 +620,7 @@ button{font-family:inherit}
   #sidebar{position:fixed; top:var(--topbar-h); bottom:0; left:0; z-index:40; box-shadow:var(--sh-lg)}
   #sidebar.collapsed{box-shadow:none}
   .home-grid{grid-template-columns:1fr}
+  .home-top-row{flex-direction:column}
   .snippet-comparison{grid-template-columns:1fr}
   #quick-ref-panel{position:fixed; top:var(--topbar-h); bottom:0; right:0; z-index:40; box-shadow:var(--sh-lg)}
   .page-title{font-size:30px}

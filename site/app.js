@@ -478,7 +478,12 @@ function renderHome() {
   tipCard.setAttribute('role', 'button');
   tipCard.setAttribute('tabindex', '0');
   tipCard.addEventListener('keydown', e => e.key === 'Enter' && tipCard.click());
-  area.appendChild(tipCard);
+
+  // Tip of the Day + SAS Joke Break share a row — the tip doesn't need full width
+  const topRow = el('div', {class: 'home-top-row'});
+  topRow.appendChild(tipCard);
+  topRow.appendChild(renderJokeCard());
+  area.appendChild(topRow);
 
   // About this site
   const about = el('div', {class: 'about-card'});
@@ -488,9 +493,6 @@ function renderHome() {
     <p>Found something out of date, or have a pattern worth adding? Use the <span class="icon ti-flag" aria-hidden="true"></span> flag icon on any rule to mark it as outdated, or use "Suggest edit" on a code snippet to propose a change. Both open a GitHub issue so the team can review it.</p>
   `;
   area.appendChild(about);
-
-  // SAS joke break
-  area.appendChild(renderJokeCard());
 
   // Section overview list
   area.appendChild(el('h2', {class: 'section-h'}, 'All sections'));
