@@ -17,6 +17,17 @@
 
   <!-- ACHI design system -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Apply saved/system theme before first paint to avoid a flash of the wrong theme -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('achi-theme');
+        var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -42,6 +53,9 @@
       </div>
     </div>
     <div id="topbar-right">
+      <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+        <span class="icon ti-moon" aria-hidden="true"></span>
+      </button>
       <button id="quick-ref-toggle" title="Quick Reference — Do / Don't">
         <span class="icon ti-checklist"></span>
         Quick Ref

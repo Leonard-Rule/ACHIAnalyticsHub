@@ -46,6 +46,25 @@
   --topbar-h:60px; --sidebar-w:284px; --qr-w:340px;
 }
 
+/* ── Dark theme ───────────────────────────────────────────────────────────────
+   Overrides only the primitive neutral scale (+ shadows). Semantic tokens like
+   --text, --surface, --line etc. are all defined in terms of these primitives
+   above, so they repaint automatically — no per-component rules needed. ── */
+:root[data-theme="dark"]{
+  --white:#172230; --g25:#0f1826; --g50:#1b2634; --g100:#243244; --g200:#34465c;
+  --g300:#4c6178; --g400:#6f8398; --g500:#93a5b6; --g600:#b3c1cd; --g700:#d2dce3;
+  --g800:#e7edf1; --ink:#f4f8fa; --mist:#1d2b3a; --mist-deep:#26374a;
+
+  --sh-xs:0 1px 2px rgba(0,0,0,.35);
+  --sh-sm:0 1px 3px rgba(0,0,0,.45),0 1px 2px rgba(0,0,0,.3);
+  --sh-md:0 4px 12px rgba(0,0,0,.5),0 2px 4px rgba(0,0,0,.3);
+  --sh-lg:0 14px 30px rgba(0,0,0,.55),0 4px 8px rgba(0,0,0,.35);
+}
+
+body,#topbar,#sidebar,#main,#quick-ref-panel,#search-results,#toast{
+  transition:background-color .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
+}
+
 /* ── Reset / base ─────────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
@@ -110,7 +129,13 @@ button{font-family:inherit}
   border:1px solid var(--line-2); border-bottom-width:2px; border-radius:5px; padding:1px 6px;
 }
 
-#topbar-right{min-width:var(--qr-w); display:flex; justify-content:flex-end; flex-shrink:0}
+#topbar-right{min-width:var(--qr-w); display:flex; justify-content:flex-end; align-items:center; gap:10px; flex-shrink:0}
+#theme-toggle{
+  width:38px; height:38px; display:grid; place-items:center; flex-shrink:0; cursor:pointer;
+  font-size:17px; color:var(--g500); background:var(--white); border:1px solid var(--line-2);
+  border-radius:var(--r-pill); transition:all var(--ease);
+}
+#theme-toggle:hover{border-color:var(--teal); color:var(--teal-700); background:var(--teal-100)}
 #quick-ref-toggle{
   display:inline-flex; align-items:center; gap:7px; height:38px; padding:0 16px;
   font-family:var(--f-display); font-weight:600; font-size:13.5px; cursor:pointer;
@@ -232,6 +257,27 @@ button{font-family:inherit}
 .home-tip-date{font-size:13px; color:var(--muted)}
 .home-card--tip .home-card-title{font-size:22px}
 .home-card--tip .home-card-desc{font-size:16.5px; line-height:1.6; margin-top:10px; padding-right:32px}
+
+/* ── Home: SAS joke card ───────────────────────────────────────────────────── */
+.home-card--joke{width:100%; margin:16px 0 8px; padding:24px 28px; cursor:default}
+.home-card--joke::before{background:var(--maroon)}
+.home-card--joke:hover{transform:none; box-shadow:var(--sh-xs); border-color:var(--line)}
+.home-card--joke .home-tip-label{color:var(--maroon-700); display:inline-flex; align-items:center; gap:7px}
+.home-card--joke .home-tip-label .icon{font-size:16px}
+.joke-shuffle-btn{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--f-display); font-weight:600;
+  font-size:12.5px; color:var(--maroon-700); background:var(--maroon-100); border:1px solid transparent;
+  padding:7px 13px; border-radius:var(--r-pill); cursor:pointer; transition:all var(--ease);
+}
+.joke-shuffle-btn:hover{background:var(--maroon); color:#fff}
+.joke-shuffle-btn:active{transform:scale(.96)}
+.joke-shuffle-btn .icon{font-size:14px; transition:transform .35s var(--ease-out)}
+.joke-shuffle-btn.spinning .icon{transform:rotate(360deg)}
+.joke-text{
+  font-size:16.5px; font-weight:500; color:var(--text-strong); line-height:1.55;
+  transition:opacity .15s var(--ease);
+}
+.joke-text.joke-fade{opacity:0}
 
 .about-card{
   margin:18px 0 8px; padding:20px 24px; background:var(--g25); border:1px solid var(--line);

@@ -40,7 +40,34 @@ async function boot() {
   renderSidebar();
   renderQuickRef();
   bindGlobalEvents();
+  initTheme();
   navigateToHash() || renderHome();
+}
+
+// ─── Theme (dark mode) ───────────────────────────────────────────────────────
+
+function initTheme() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  const icon = btn.querySelector('.icon');
+
+  function syncButton() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    icon.className = `icon ${isDark ? 'ti-sun' : 'ti-moon'}`;
+    const label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+  }
+
+  syncButton();
+
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('achi-theme', next); } catch (e) {}
+    syncButton();
+  });
 }
 
 // ─── Data loading ────────────────────────────────────────────────────────────
@@ -344,6 +371,65 @@ window.addEventListener('popstate', e => {
   else renderHome();
 });
 
+// ─── SAS joke generator ──────────────────────────────────────────────────────
+
+const SAS_JOKES = [
+  "Why did the analyst refuse to trust the merge? Too many unmatched BY variables in the relationship.",
+  "A SAS programmer's love language: 0 errors, 0 warnings in the log.",
+  "Why did the missing value break up with the numeric variable? It just wasn't adding up.",
+  "SAS programmer pickup line: \"Are you a KEEP statement? Because you're the only one I want in this dataset.\"",
+  "Why do SAS programmers hate small talk? Too much WHERE, not enough BY.",
+  "How does a SAS programmer apologize? \"My bad — forgot the semicolon.\"",
+  "Why did the duplicate claim get flagged? It couldn't decide if it was FIRST. or LAST.",
+  "What do you call a SAS program that runs clean on the first submit? A rumor.",
+  "Why did PROC FREQ go to therapy? Too many unresolved categories.",
+  "A claims analyst's worst nightmare: the row count doesn't match the distinct ID count, and it's 4:59pm.",
+  "Why did the macro variable feel invisible? Nobody wrapped it in ampersands.",
+  "You know a SAS programmer is an optimist when they still expect the log to say NOTE instead of ERROR.",
+  "Why don't SAS programmers play hide and seek with their libnames? The good ones are always found in Step 0.",
+  "What did one date variable say to the other? \"Let's not overlap unless we mean it — three conditions or nothing.\"",
+  "Why did the SQL join get audited? It kept fanning out and refusing to explain itself.",
+];
+
+function renderJokeCard() {
+  const card = el('div', {class: 'home-card home-card--joke'});
+
+  let currentIdx = Math.floor(Math.random() * SAS_JOKES.length);
+  const pickNext = () => {
+    if (SAS_JOKES.length <= 1) return currentIdx;
+    let idx;
+    do { idx = Math.floor(Math.random() * SAS_JOKES.length); } while (idx === currentIdx);
+    return idx;
+  };
+
+  card.innerHTML = `
+    <div class="home-tip-header">
+      <span class="home-tip-label"><span class="icon ti-mood-smile" aria-hidden="true"></span> SAS Joke Break</span>
+      <button class="joke-shuffle-btn" type="button" aria-label="Show another joke" title="Another one">
+        <span class="icon ti-refresh" aria-hidden="true"></span> New joke
+      </button>
+    </div>
+    <div class="joke-text">${SAS_JOKES[currentIdx]}</div>
+  `;
+
+  const shuffleBtn = card.querySelector('.joke-shuffle-btn');
+  const textEl = card.querySelector('.joke-text');
+
+  shuffleBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = pickNext();
+    shuffleBtn.classList.add('spinning');
+    textEl.classList.add('joke-fade');
+    setTimeout(() => {
+      textEl.textContent = SAS_JOKES[currentIdx];
+      textEl.classList.remove('joke-fade');
+    }, 150);
+    setTimeout(() => shuffleBtn.classList.remove('spinning'), 400);
+  });
+
+  return card;
+}
+
 // ─── Home ────────────────────────────────────────────────────────────────────
 
 function renderHome() {
@@ -402,6 +488,9 @@ function renderHome() {
     <p>Found something out of date, or have a pattern worth adding? Use the <span class="icon ti-flag" aria-hidden="true"></span> flag icon on any rule to mark it as outdated, or use "Suggest edit" on a code snippet to propose a change. Both open a GitHub issue so the team can review it.</p>
   `;
   area.appendChild(about);
+
+  // SAS joke break
+  area.appendChild(renderJokeCard());
 
   // Section overview list
   area.appendChild(el('h2', {class: 'section-h'}, 'All sections'));
