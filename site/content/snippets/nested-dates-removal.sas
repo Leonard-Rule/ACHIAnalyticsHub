@@ -80,7 +80,7 @@ run;
 
 /*readmits within 30 days but more than 1 day*/
 /*these are excluded from our outpatient eval*/
-proc sql; /*20,377*/
+proc sql; /**/
 	create table ssdrive.ip_30day_readmits as
 		select distinct *
 		from mpid_index_seq_ref
