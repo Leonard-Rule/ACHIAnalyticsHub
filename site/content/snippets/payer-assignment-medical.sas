@@ -7,7 +7,6 @@
 %do %while (&yr ne );
 
     *------ COMMERCIAL ------;
-/*17:1,673,214; 18:1,633,599; 19:1,843,473; 20:1,851,318; 21:1,771,236; 22:1,801,410; 23:1,729,789 */
     proc sql;
         create table com_&yr. as
             select distinct compress(ME001_Submitter||ME107_CarrierSpecificUniqueMembe) as newid
@@ -33,8 +32,7 @@
                 and ME013_MemberGender ne "U"
             order by newid, PeriodEndingDate, ME162A_DateOfFirstEnrollment;
     quit;
-
-/*17:1,346,666; 18:1,381,545; 19:1,382,102; 20:1,363,867; 21:1,417,653; 22:1,446,208; 23:1,333,132*/
+	
     data ssdrive.com_&yr._test;
         set com_&yr.;
         by newid PeriodEndingDate ME162A_DateOfFirstEnrollment;
@@ -42,7 +40,6 @@
     run;
 
     *------ MEDICAID ------;
-/*17:1,945,560; 18:2,138,811; 19:1,999,690; 20:1,759,082; 21:2,900,136; 22:2,402,194; 23:2,598,512*/
     proc sql;
         create table mcd_&yr. as
             select distinct compress(ME001_Submitter||ME107_CarrierSpecificUniqueMembe) as newid
@@ -59,7 +56,7 @@
                 and ME013_MemberGender ne "U"
             order by newid, PeriodEndingDate, ME162A_DateOfFirstEnrollment;
     quit;
-/*17:1,347,234; 18:1,304,901; 19:1,248,264; 20:1,215,324; 21:1,251,394; 22:1,318,836; 23:1,375,781*/
+	
     data ssdrive.mcd_&yr._test;
         set mcd_&yr.;
         by newid periodendingdate ME162A_DateOfFirstEnrollment;
@@ -67,7 +64,6 @@
     run;
 
     *------ MEDICARE ADVANTAGE ------;
-/*17:245,626; 18:275,472; 19:347,758; 20:432,912; 21:530,771; 22:574,907; 23:678,950*/
     proc sql;
         create table mcradv_&yr. as
             select distinct compress(ME001_Submitter||ME107_CarrierSpecificUniqueMembe) as newid
@@ -84,8 +80,7 @@
                 and ME013_MemberGender ne "U"
             order by newid, PeriodEndingDate, ME162A_DateOfFirstEnrollment;
     quit;
-
-/*17:145,239; 18:185,884; 19:208,807; 20:268,909; 21:320,544; 22:361,584; 23:422,609 */
+	
     data ssdrive.mcradv_&yr._test;
         set mcradv_&yr.;
         by newid periodendingdate ME162A_DateOfFirstEnrollment;
@@ -93,7 +88,6 @@
     run;
 
     *------ MEDICARE FEE FOR SERVICE ------;
-/*17:680,344; 18:695,068; 19:703,401; 20:713,438; 21:738,767; 22:746,066; 23:737,563*/
 	proc sql;
         create table mcrffs_&yr. as
             select distinct compress(ME001_Submitter||ME107_CarrierSpecificUniqueMembe) as newid
@@ -106,13 +100,12 @@
                 and ME013_MemberGender ne "U"
             order by newid, PeriodEndingDate, ME162A_DateOfFirstEnrollment;
     quit;
-/*17:654,612; 18:665,080; 19:674,208; 20:684,219; 21:704,637; 22:710,563; 23:699,743*/
+	
    data ssdrive.mcrffs_&yr.;
         set mcrffs_&yr.;
         by newid periodendingdate ME162A_DateOfFirstEnrollment;
         if last.newid then output;
     run;
-
 
     %let i = %eval(&i + 1);
     %let yr = %scan(&years, &i);
