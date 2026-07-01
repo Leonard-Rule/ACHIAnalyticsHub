@@ -350,7 +350,7 @@ function renderHome() {
   const about = el('div', {class: 'about-card'});
   about.innerHTML = `
     <div class="about-card-title"><span class="icon ti-info-circle" aria-hidden="true"></span> About this site</div>
-    <p>The ACHI Analyst Reference Hub is a living reference for ACHI's analytical standards, SAS/SQL patterns, and project conventions — built so we can all learn from each other and standardize the way we pull and analyze data.</p>
+    <p>The ACHI Analytucs Hub is a living reference for ACHI's analytical standards, SAS/SQL patterns, and project conventions. It exists so we can all learn from each other and standardize the way we pull and analyze data.</p>
     <p>Found something out of date, or have a pattern worth adding? Use the <span class="icon ti-flag" aria-hidden="true"></span> flag icon on any rule to mark it as outdated, or use "Suggest edit" on a code snippet to propose a change. Both open a GitHub issue so the team can review it.</p>
   `;
   area.appendChild(about);
