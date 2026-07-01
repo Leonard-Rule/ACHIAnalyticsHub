@@ -2,7 +2,7 @@
   "id": "ids-deduplication",
   "title": "IDs & Deduplication",
   "icon": "ti-fingerprint",
-  "order": 3,
+  "order": 2,
   "subsections": [
     {
       "id": "newids",
@@ -10,10 +10,10 @@
       "order": 1,
       "rules": [
         {
-          "id": "newid-placeholder",
-          "type": "placeholder",
-          "title": "NewID documentation",
-          "body": "Content to be added. NewIDs are member-level identifiers in the APCD. The same person can have multiple NewIDs across payers or years."
+          "id": "newid-rule",
+          "type": "rule",
+          "title": "NewID — member identifier built from submitter + member ID",
+          "body": "NewID is the combination of Submitter (ME001) + memberid (ME107), therefore it can be created for any claim. NewIDs are member-level identifiers in the APCD. The same person can have multiple NewIDs across payers or years."
         }
       ]
     },
@@ -23,10 +23,10 @@
       "order": 2,
       "rules": [
         {
-          "id": "studyid-placeholder",
-          "type": "placeholder",
-          "title": "StudyID documentation",
-          "body": "Content to be added. StudyIDs are de-identified person-level identifiers used for longitudinal tracking across claims."
+          "id": "studyid-rule",
+          "type": "rule",
+          "title": "StudyID — de-identified person-level identifier",
+          "body": "Last name (encrypted as ME998) + Sex + DOB. Also known as Hash_ID (just last name (encrypted as ME998) + DOB). Use cases: link HTI and HDI, follow people over time."
         }
       ]
     },
@@ -36,10 +36,10 @@
       "order": 3,
       "rules": [
         {
-          "id": "mpid-placeholder",
-          "type": "placeholder",
-          "title": "MPID documentation",
-          "body": "Content to be added. MPIDs are Master Person IDs used in mother-child linkage files and other cross-program matching."
+          "id": "mpid-rule",
+          "type": "rule",
+          "title": "MPID — Master Person ID created by analytics",
+          "body": "Created by analytics, reconciles pid and studyid. Can be used to link HTI and HDI, follow people over time. Found in mpid_enrollsegs_25aMMDDtoMMDD."
         }
       ]
     },
@@ -58,14 +58,7 @@
             "title": "Common mistake",
             "body": "Using NODUPKEY to keep the highest income tier per studyid does NOT work as expected if income_rank is in the sort key — it keeps one row per studyid+income_rank pair, not one row per studyid."
           }
-        }
-      ]
-    },
-    {
-      "id": "single-row-per-id",
-      "title": "Correct Single-Row-Per-ID Pattern",
-      "order": 5,
-      "rules": [
+        },
         {
           "id": "first-logic",
           "type": "tip",
@@ -82,7 +75,7 @@
     {
       "id": "fanout",
       "title": "Fan-Out from Multi-Row Joins",
-      "order": 6,
+      "order": 5,
       "rules": [
         {
           "id": "fanout-rule",

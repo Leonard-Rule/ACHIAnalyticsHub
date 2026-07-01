@@ -1,6 +1,6 @@
 {
   "id": "code-structure",
-  "title": "File Setup and Code Structure",
+  "title": "Folder Setup and Code Structure",
   "icon": "ti-folders",
   "order": 1,
   "subsections": [
@@ -44,7 +44,7 @@
     },
     {
       "id": "library-path-setup",
-      "title": "Library & Path Setup",
+      "title": "Libname and File Path Setup",
       "order": 2,
       "rules": [
         {

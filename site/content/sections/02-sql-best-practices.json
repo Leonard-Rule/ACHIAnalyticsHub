@@ -2,7 +2,7 @@
   "id": "sql-best-practices",
   "title": "SQL & Data Step Best Practices",
   "icon": "ti-database",
-  "order": 2,
+  "order": 3,
   "subsections": [
     {
       "id": "select-distinct",

@@ -423,7 +423,7 @@ function renderSectionHome(section) {
     item.innerHTML = `
       <span class="icon ti-article" aria-hidden="true"></span>
       <span class="section-overview-title">${sub.title}</span>
-      <span class="section-overview-count">${ruleCount} rule${ruleCount !== 1 ? 's' : ''}</span>
+      <span class="section-overview-count">${ruleCount} item${ruleCount !== 1 ? 's' : ''}</span>
     `;
     item.addEventListener('click', () => navigateTo(section.id, sub.id));
     list.appendChild(item);
@@ -508,7 +508,7 @@ function renderRuleCard(rule) {
   card.classList.add(`rule-card--${rule.type || 'rule'}`);
 
   const badgeLabels = {
-    rule: 'RULE', danger: 'DANGER', remember: 'REMEMBER', warning: 'WATCH OUT',
+    rule: 'SOP', danger: 'DANGER', remember: 'REMEMBER', warning: 'WATCH OUT',
     tip: 'TIP', placeholder: 'PLACEHOLDER',
   };
   card.querySelector('.rule-badge').textContent = badgeLabels[rule.type] || 'RULE';
