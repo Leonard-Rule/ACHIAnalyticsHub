@@ -13,7 +13,7 @@
           "id": "g-drive",
           "type": "rule",
           "title": "G:\\ — Shared Network Drive (Final Outputs Only)",
-          "body": "The G:\\ is accessible by other members of ACHI and needs to contain only final outputs, methodology, and notes or research.",
+          "body": "The G:\\ is accessible by other members of ACHI and should contain only final outputs, methodology, and notes or research.",
           "list": [
             "Located on the \\\\hosp1serv1 server",
             "Analytics/Research team project folders: G:\\DATA\\AAA Analytic Projects"
