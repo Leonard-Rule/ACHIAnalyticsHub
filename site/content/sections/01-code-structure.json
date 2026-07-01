@@ -102,7 +102,7 @@
           "body": "Consistent versioning keeps the team aligned on which program is current.",
           "list": [
             "New iterations: append v0.x YYYYMMDD to the filename",
-            "Move the prior version into an 'old versions' subfolder",
+            "Move the prior version into a 'previous versions' subfolder",
             "Never overwrite existing programs in place"
           ]
         }
