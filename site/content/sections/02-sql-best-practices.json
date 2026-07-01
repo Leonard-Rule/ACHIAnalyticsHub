@@ -39,7 +39,8 @@
             "Step 2 — Use a DATA step with FIRST.studyid logic to retain only the first record per studyid"
           ],
           "snippet_ref": "first-dedup"
-        },
+        }
+      }
         {
       "id": "select-distinct",
       "title": "SELECT DISTINCT as the Default",
