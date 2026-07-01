@@ -124,7 +124,7 @@ function buildSearchIndex() {
 
       (sub.rules || []).forEach(rule => {
         State.searchIndex.push({
-          type: 'rule',
+          type: rule.type || 'sop',
           label: rule.title,
           text: `${rule.title} ${rule.body || ''} ${(rule.list || []).join(' ')}`,
           nav: `${section.id}/${sub.id}`,
@@ -466,15 +466,15 @@ function renderRuleCard(rule) {
   const tpl = document.getElementById('tpl-rule-card').content.cloneNode(true);
   const card = tpl.querySelector('.rule-card');
 
-  card.dataset.type = rule.type || 'rule';
-  card.classList.add(`rule-card--${rule.type || 'rule'}`);
+  card.dataset.type = rule.type || 'sop';
+  card.classList.add(`rule-card--${rule.type || 'sop'}`);
 
   const badgeLabels = {
-    rule: 'SOP', danger: 'DANGER', remember: 'REMEMBER', warning: 'WATCH OUT',
+    sop: 'SOP', danger: 'DANGER', remember: 'REMEMBER', warning: 'WATCH OUT',
     tip: 'TIP', placeholder: 'PLACEHOLDER', reference: 'REFERENCE', code: 'CODE',
   };
   card.querySelector('.rule-badge').textContent = badgeLabels[rule.type] || 'RULE';
-  card.querySelector('.rule-badge').className = `rule-badge badge--${rule.type || 'rule'}`;
+  card.querySelector('.rule-badge').className = `rule-badge badge--${rule.type || 'sop'}`;
   card.querySelector('.rule-title').textContent = rule.title;
 
   const body = card.querySelector('.rule-body');

@@ -11,7 +11,7 @@
       "rules": [
         {
           "id": "g-drive",
-          "type": "rule",
+          "type": "sop",
           "title": "G:\\ — Shared Network Drive (Final Outputs Only)",
           "body": "The G:\\ is accessible by other members of ACHI and should contain only final outputs, methodology, and notes or research.",
           "list": [
@@ -21,7 +21,7 @@
         },
         {
           "id": "r-drive",
-          "type": "rule",
+          "type": "sop",
           "title": "R:\\ — Analytics Team Drive (Working Files)",
           "body": "The R:\\ is accessible only by the Analytics/Research team and may contain any analyzable datasets, raw output, and programs.",
           "list": [
@@ -31,7 +31,7 @@
         },
         {
           "id": "folder-standards",
-          "type": "rule",
+          "type": "sop",
           "title": "Folder Creation & Version Management",
           "body": "For each project created, the primary analyst assigned to that project is responsible for creating folders on G:\\ and R:\\ if they have not yet been created.",
           "list": [
@@ -49,7 +49,7 @@
       "rules": [
         {
           "id": "ssdrive-path",
-          "type": "rule",
+          "type": "sop",
           "title": "SAS setup for efficiently running your code",
           "body": "Each analyst's computer should have four encrypted solid-state drives (SSDs). The SSDrive must point to a different folder than where SASWORK tables are saved — each project gets its own named subfolder. Trial and error has suggested the following drive configuration works most efficiently:",
           "list": [
@@ -74,7 +74,7 @@
       "rules": [
         {
           "id": "step-structure",
-          "type": "rule",
+          "type": "sop",
           "title": "All projects follow a consistent numbered step layout",
           "body": "The 'what it should do' part will vary by project but this is a general guide for standard projects.",
           "table": {
@@ -97,7 +97,7 @@
       "rules": [
         {
           "id": "versioning",
-          "type": "rule",
+          "type": "sop",
           "title": "File versioning standard",
           "body": "Consistent versioning keeps the team aligned on which program is current.",
           "list": [

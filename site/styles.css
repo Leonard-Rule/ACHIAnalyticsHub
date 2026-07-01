@@ -268,7 +268,7 @@ button{font-family:inherit}
   font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; line-height:1;
   padding:4px 9px; border-radius:var(--r-pill);
 }
-.badge--rule{background:var(--blue-100); color:var(--navy-800)}
+.badge--sop{background:var(--blue-100); color:var(--navy-800)}
 .badge--danger{background:var(--danger-bg); color:var(--danger)}
 .badge--remember{background:var(--maroon-100); color:var(--maroon-700)}
 .badge--warning{background:var(--warning-bg); color:var(--warning)}
@@ -284,7 +284,7 @@ button{font-family:inherit}
   transition:box-shadow var(--ease);
 }
 .rule-card:hover{box-shadow:var(--sh-sm)}
-.rule-card--rule{border-left-color:var(--navy)}
+.rule-card--sop{border-left-color:var(--navy)}
 .rule-card--danger{border-left-color:var(--danger)}
 .rule-card--remember{border-left-color:var(--maroon)}
 .rule-card--warning{border-left-color:var(--warning)}
@@ -502,7 +502,7 @@ button{font-family:inherit}
 .search-result-type{font-family:var(--f-display); font-weight:700; font-size:9.5px; text-transform:uppercase;
   letter-spacing:.06em; padding:3px 7px; border-radius:4px; background:var(--g100); color:var(--g600); white-space:nowrap}
 .search-type--section,.search-type--subsection{background:var(--blue-100); color:var(--navy-800)}
-.search-type--rule{background:var(--teal-100); color:var(--teal-700)}
+.search-type--sop{background:var(--teal-100); color:var(--teal-700)}
 .search-type--snippet{background:var(--navy-900); color:var(--teal-300)}
 .search-result-label{font-size:14px; color:var(--text-strong); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .search-result-label mark{background:var(--warning-bg); color:var(--navy-900); border-radius:2px; padding:0 1px}

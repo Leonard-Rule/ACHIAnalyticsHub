@@ -11,7 +11,7 @@
       "rules": [
         {
           "id": "year-loop-rule",
-          "type": "rule",
+          "type": "sop",
           "title": "Use %do %while with %scan for year iteration",
           "body": "Use %do %while with %scan for iterating over year lists. Macro variables should be defined globally before macro calls. Macro-ize the year variable so all years run through identical logic.",
           "snippet_ref": "year-loop-pattern",
