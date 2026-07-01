@@ -70,7 +70,7 @@
     {
       "id": "standard-step-structure",
       "title": "Standard Step Structure",
-      "order": 3,
+      "order": 4,
       "rules": [
         {
           "id": "step-structure",
@@ -93,7 +93,7 @@
     {
       "id": "versioning-convention",
       "title": "Versioning Convention",
-      "order": 4,
+      "order": 3,
       "rules": [
         {
           "id": "versioning",

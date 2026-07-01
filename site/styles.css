@@ -503,7 +503,7 @@ button{font-family:inherit}
   letter-spacing:.06em; padding:3px 7px; border-radius:4px; background:var(--g100); color:var(--g600); white-space:nowrap}
 .search-type--section,.search-type--subsection{background:var(--blue-100); color:var(--navy-800)}
 .search-type--sop{background:var(--teal-100); color:var(--teal-700)}
-.search-type--snippet{background:var(--navy-900); color:var(--teal-300)}
+.search-type--code{background:var(--navy-900); color:var(--teal-300)}
 .search-result-label{font-size:14px; color:var(--text-strong); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .search-result-label mark{background:var(--warning-bg); color:var(--navy-900); border-radius:2px; padding:0 1px}
 .search-result-section{font-size:11.5px; color:var(--faint); white-space:nowrap; font-family:var(--f-mono)}

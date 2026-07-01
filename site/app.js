@@ -138,11 +138,11 @@ function buildSearchIndex() {
   // Index snippets
   State.snippets.forEach(snippet => {
     State.searchIndex.push({
-      type: 'snippet',
-      label: `Snippet: ${snippet.title}`,
+      type: 'code',
+      label: `Code: ${snippet.title}`,
       text: `${snippet.title} ${snippet.tags.join(' ')} ${State.snippetCode[snippet.id] || ''}`,
       nav: snippet.section_ref,
-      section: 'Code Snippets',
+      section: 'Code Examples',
     });
   });
 }
