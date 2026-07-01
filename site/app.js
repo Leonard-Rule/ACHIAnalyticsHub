@@ -65,6 +65,32 @@ function ghEditUrl(filePath) {
   return ghUrl(`edit/${branch}/${filePath}`);
 }
 
+// Returns a mailto: or GitHub Issues URL for flag/suggest actions.
+// Set feedback.email in config.json to use email; leave blank to use GitHub.
+function feedbackUrl(subject, body) {
+  const email = (State.config.feedback || {}).email;
+  if (email) {
+    return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+  const { repo } = State.config.github || {};
+  if (repo) {
+    return ghUrl(`issues/new?title=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+  }
+  return '#';
+}
+
+// Returns a mailto: or GitHub edit URL for "Suggest edit" on a code block.
+function suggestEditUrl(meta) {
+  const email = (State.config.feedback || {}).email;
+  if (email) {
+    const subject = `Suggest edit: ${meta.title}`;
+    const body = [`Code: ${meta.title}`, ``, `Suggested change:`, ``].join('\n');
+    return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+  const { snippets_path = 'site/content/snippets' } = State.config.github || {};
+  return meta.file ? ghEditUrl(`${snippets_path}/${meta.file}`) : '#';
+}
+
 async function loadSections() {
   // Section files are numbered 01-12; fetch them in order
   const indices = Array.from({length: 12}, (_, i) =>
@@ -571,19 +597,18 @@ function renderRuleCard(rule, section, sub) {
     slot.replaceWith(renderSnippet(rule.snippet_ref));
   }
 
-  // Flag button → open GitHub issue pre-filled with context
+  // Flag button → email or GitHub issue pre-filled with context
   card.querySelector('.flag-btn').addEventListener('click', () => {
-    const title = `FLAG: ${rule.title}`;
+    const subject = `FLAG: ${rule.title}`;
     const body = [
-      `**Section:** ${section ? section.title : '—'}`,
-      `**Subsection:** ${sub ? sub.title : '—'}`,
-      `**Rule:** ${rule.title}`,
+      `Section: ${section ? section.title : '—'}`,
+      `Subsection: ${sub ? sub.title : '—'}`,
+      `Rule: ${rule.title}`,
       ``,
-      `**What's outdated or incorrect:**`,
-      `<!-- Describe what needs to be updated -->`,
+      `What's outdated or incorrect:`,
+      ``,
     ].join('\n');
-    const url = ghUrl(`issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=outdated`);
-    window.open(url, '_blank');
+    window.open(feedbackUrl(subject, body), '_blank');
   });
 
   return card;
@@ -612,17 +637,14 @@ function renderSnippet(snippetId) {
     });
 
     block.querySelector('.contribute-btn').addEventListener('click', () => {
+      const subject = `Contribute: ${meta.title}`;
       const body = [
-        `**Code ID:** ${meta.id}`,
-        `**Title:** ${meta.title}`,
+        `Code: ${meta.title}`,
         ``,
-        `**Suggested code:**`,
-        '```sas',
-        '',
-        '```',
+        `Suggested code:`,
+        ``,
       ].join('\n');
-      const url = ghUrl(`issues/new?title=${encodeURIComponent(`Add code: ${meta.title}`)}&body=${encodeURIComponent(body)}&labels=code-contribution`);
-      window.open(url, '_blank');
+      window.open(feedbackUrl(subject, body), '_blank');
     });
 
     return block;
@@ -647,9 +669,7 @@ function renderSnippet(snippetId) {
   });
 
   block.querySelector('.suggest-btn').addEventListener('click', () => {
-    const { snippets_path = 'site/content/snippets' } = State.config.github || {};
-    const url = ghEditUrl(`${snippets_path}/${meta.file}`);
-    window.open(url, '_blank');
+    window.open(suggestEditUrl(meta), '_blank');
   });
 
   return block;

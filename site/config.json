@@ -1,4 +1,7 @@
 {
+  "feedback": {
+    "email": ""
+  },
   "github": {
     "repo": "Leonard-Rule/ACHIAnalyticsHub",
     "branch": "main",
