@@ -381,7 +381,7 @@ const SAS_JOKES = [
   "There are 10 kinds of people in this world. Those who understand binary and those who don’t.",
   "Old data analysts never die – they just get broken down by age.",
   "Two random variables were talking in a bar. They thought they were being discreet, but I heard their chatter continuously.",
-  "Why was the SQL query always lonely? Because it couldn't find a table to join."
+  "Why was the SQL query always lonely? Because it couldn't find a table to join.",
 ];
 
 function renderJokeCard() {
