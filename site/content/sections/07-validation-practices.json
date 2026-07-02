@@ -50,8 +50,8 @@
         {
           "id": "row-count-rule",
           "type": "sop",
-          "title": "Comment out row counts from the log next to every key table",
-          "body": "Row counts from the SAS log should be commented out immediately adjacent to the code that created that table. This is a team standard that allows validators to independently check their results without re-running the full program. Not required for every intermediate table, but the more the better.",
+          "title": "Add row counts from the log next to every key table",
+          "body": "Row counts from the SAS log should be added adjacent to the code that created that table. This is a team standard that allows validators to independently check their results. Not required for every intermediate table, but the more the better.",
           "snippet_ref": "row-count-comment"
         }
       ]
