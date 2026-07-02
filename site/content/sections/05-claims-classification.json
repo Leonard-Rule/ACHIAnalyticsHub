@@ -12,8 +12,8 @@
         {
           "id": "identifying-procedures-code",
           "type": "code",
-          "title": "Use preidentified CPT or Dx codes to scan claims and identify procedures of interest",
-          "body": "Use preidentified CPT Codes or Dx codes along with this code to scan through claims and identify procedures of interest.",
+          "title": "Using CPT or DX codes to identify procedures of interest",
+          "body": "Use preidentified CPT Codes or DX codes along with this code to scan through procedure code fields and diagnosis fields in the claims to identify procedures of interest.",
           "snippet_ref": "identify-procedures"
         }
       ]
