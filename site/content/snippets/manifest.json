@@ -99,6 +99,15 @@
     "tags": ["concurrent-claims", "dates", "overlap", "three-conditions"]
   },
   {
+    "id": "identify-procedures",
+    "title": "Identifying procedures of interest via CPT / Dx codes",
+    "file": "identify-procedures.sas",
+    "language": "sas",
+    "section_ref": "claims-classification/identifying-procedures",
+    "status": "active",
+    "tags": ["classification", "procedures", "cpt", "diagnosis", "macro"]
+  },
+  {
     "id": "classify-professional-facility",
     "title": "Professional vs. Facility Classification",
     "file": "classify-professional-facility.sas",

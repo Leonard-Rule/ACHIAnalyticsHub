@@ -5,33 +5,30 @@
   "order": 12,
   "subsections": [
     {
-      "id": "dos-donts",
-      "title": "Do / Don't",
+      "id": "topic-responsibilities",
+      "title": "Topic Responsibilities",
       "order": 1,
-      "dos_donts": [
+      "rules": [
         {
-          "do": "Use SELECT DISTINCT by default",
-          "dont": "Assume row count = distinct ID count without checking"
-        },
-        {
-          "do": "Log row counts as commented-out counts next to table creation code",
-          "dont": "Skip row count documentation"
-        },
-        {
-          "do": "Use inline subquery pull then join for claims",
-          "dont": "Join claims tables on the first pull"
-        },
-        {
-          "do": "Use FIRST. DATA step logic for top-ranked row per ID",
-          "dont": "Use NODUPKEY to select a ranked row per ID"
-        },
-        {
-          "do": "Use three-condition date overlap for concurrent claims",
-          "dont": "Use only start-date-within-event logic"
-        },
-        {
-          "do": "Include Medicare FFS in concurrent claim pulls",
-          "dont": "Pull only APCD claims for concurrency checks"
+          "id": "responsibilities-table",
+          "type": "reference",
+          "title": "Section ownership — who to go to with questions",
+          "body": "Each section of the hub has a primary owner responsible for keeping its content current. Reach out to them with questions or to flag corrections.",
+          "table": {
+            "headers": ["Section", "Responsible"],
+            "rows": [
+              ["Code Structure", ""],
+              ["SQL Best Practices", ""],
+              ["IDs & Deduplication", ""],
+              ["Concurrent Claims", ""],
+              ["Claims Classification", ""],
+              ["Member & Enrollment", ""],
+              ["Validation Practices", ""],
+              ["Macro Patterns", ""],
+              ["Provider Taxonomy", ""],
+              ["Visualizations", ""]
+            ]
+          }
         }
       ]
     }

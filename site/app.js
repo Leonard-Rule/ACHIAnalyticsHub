@@ -911,8 +911,24 @@ function renderQuickRef() {
 
   const body = document.getElementById('quick-ref-body');
   const sub = (qrSection.subsections || [])[0];
-  if (sub && sub.dos_donts) {
+  if (!sub) return;
+
+  if (sub.dos_donts) {
     body.appendChild(renderDosDonts(sub.dos_donts));
+  } else if (sub.rules) {
+    sub.rules.forEach(rule => {
+      if (rule.table) {
+        const heading = el('h3', {class: 'quick-ref-rule-title'}, rule.title);
+        if (rule.body) {
+          const desc = el('p', {class: 'quick-ref-rule-body'}, rule.body);
+          body.appendChild(heading);
+          body.appendChild(desc);
+        } else {
+          body.appendChild(heading);
+        }
+        body.appendChild(renderTable(rule.table));
+      }
+    });
   }
 }
 

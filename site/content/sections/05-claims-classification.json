@@ -5,6 +5,20 @@
   "order": 6,
   "subsections": [
     {
+      "id": "identifying-procedures",
+      "title": "Identifying Procedures",
+      "order": 2,
+      "rules": [
+        {
+          "id": "identifying-procedures-code",
+          "type": "code",
+          "title": "Use preidentified CPT or Dx codes to scan claims and identify procedures of interest",
+          "body": "Use preidentified CPT Codes or Dx codes along with this code to scan through claims and identify procedures of interest.",
+          "snippet_ref": "identify-procedures"
+        }
+      ]
+    },
+    {
       "id": "professional-facility",
       "title": "Classify Professional and Facility Claims",
       "order": 1,

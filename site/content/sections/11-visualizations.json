@@ -5,38 +5,69 @@
   "order": 11,
   "subsections": [
     {
-      "id": "viz-placeholder",
-      "title": "Interactive Visual Tools",
+      "id": "tableau-best-practices",
+      "title": "Tableau Best Practices",
       "order": 1,
       "rules": [
         {
-          "id": "viz-intro",
-          "type": "placeholder",
-          "title": "Coming soon",
-          "body": "This section will house interactive visual tools for the team — charts, maps, trend explorers, and dashboards built from ACHI analytical outputs."
-        }
-      ],
-      "placeholder_cards": [
-        {
-          "id": "procedure-trends",
-          "title": "Procedure Trend Explorer",
-          "description": "Interactive chart showing procedure volume trends by year, payer, and region",
-          "icon": "ti-chart-line",
-          "status": "planned"
+          "id": "tableau-data-source",
+          "type": "sop",
+          "title": "Export clean, analysis-ready data before connecting to Tableau",
+          "body": "Tableau performs best when connected to a flat, pre-aggregated dataset rather than raw claims tables. Do any filtering, joining, and variable construction in SAS first.",
+          "list": [
+            "Export from SAS as a .csv or .xlsx — avoid live ODBC connections to raw claims tables",
+            "Include only the columns and rows the visualization needs",
+            "Name columns clearly — Tableau will use them as field labels directly",
+            "Date fields should be formatted as actual SAS date values (not stored as numbers)"
+          ]
         },
         {
-          "id": "county-utilization",
-          "title": "County-Level Utilization Map",
-          "description": "Choropleth map of Arkansas showing utilization rates by county for key service lines",
-          "icon": "ti-map",
-          "status": "planned"
+          "id": "tableau-dashboard-design",
+          "type": "tip",
+          "title": "Design dashboards for the audience, not the analyst",
+          "body": "Dashboards shared with leadership or external partners need to be self-explanatory. Avoid jargon and keep the layout focused.",
+          "list": [
+            "Limit each dashboard to one primary question it answers",
+            "Use a title and subtitle that describe the data source, time period, and population",
+            "Include a data-last-updated date on every published view",
+            "Avoid more than 3–4 charts per dashboard tab"
+          ]
         },
         {
-          "id": "payer-mix",
-          "title": "Payer Mix Dashboard",
-          "description": "Breakdown of commercial, Medicaid, and Medicare coverage across years and service lines",
-          "icon": "ti-chart-donut",
-          "status": "planned"
+          "id": "tableau-color",
+          "type": "remember",
+          "title": "Use ACHI brand colors and maintain accessibility",
+          "body": "Consistent color use across ACHI outputs reinforces brand identity and ensures charts are readable by team members with color vision differences.",
+          "list": [
+            "Primary: ACHI Navy #00558c, Teal #16a0b3, Maroon #762146",
+            "Use diverging palettes (blue-to-red) for comparisons, sequential (light-to-dark) for magnitude",
+            "Never rely on color alone to convey meaning — use labels or patterns as backup",
+            "Test dashboards with a color-blindness simulator before sharing externally"
+          ]
+        },
+        {
+          "id": "tableau-performance",
+          "type": "tip",
+          "title": "Keep published workbooks performant",
+          "body": "Large or slow Tableau workbooks frustrate users and may time out on Tableau Server.",
+          "list": [
+            "Use extracts instead of live connections for large datasets",
+            "Filter to only the years and populations needed before publishing",
+            "Avoid row-level calculations that could be pre-computed in SAS",
+            "Use the Performance Recorder (Help → Record Performance) to identify slow views"
+          ]
+        },
+        {
+          "id": "tableau-publishing",
+          "type": "sop",
+          "title": "Save final workbooks to the G:\\ and publish to Tableau Server",
+          "body": "All published Tableau workbooks should follow the same naming and organization standards as other final outputs.",
+          "list": [
+            "Save the .twbx (packaged workbook) to G:\\DATA\\AAA Analytic Projects\\[Project]\\Final Output",
+            "Publish to the appropriate project folder on Tableau Server",
+            "Set permissions so only the ACHI team can edit; stakeholders get viewer access",
+            "Version the file name the same way as SAS programs: append v0.x YYYYMMDD"
+          ]
         }
       ]
     }

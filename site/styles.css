@@ -597,6 +597,12 @@ button{font-family:inherit}
 #quick-ref-body .dos-donts-table{font-size:13px}
 #quick-ref-body .dos-donts-table th{padding:9px 12px; font-size:11px}
 #quick-ref-body .dos-donts-table td{padding:9px 12px; font-size:13px}
+.quick-ref-rule-title{font-family:var(--f-display); font-size:14px; font-weight:700; color:var(--text-strong); margin:0 0 6px}
+.quick-ref-rule-body{font-size:13px; color:var(--muted); margin:0 0 12px; line-height:1.5}
+#quick-ref-body .rule-table-wrap{overflow-x:auto; margin:0}
+#quick-ref-body .rule-table{font-size:12px}
+#quick-ref-body .rule-table th{padding:8px 10px; font-size:11px}
+#quick-ref-body .rule-table td{padding:8px 10px}
 
 /* ── Toast ────────────────────────────────────────────────────────────────── */
 #toast{position:fixed; bottom:24px; left:50%; transform:translate(-50%,16px); z-index:80;
