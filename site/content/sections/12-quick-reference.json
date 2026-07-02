@@ -25,6 +25,34 @@
           }
         }
       ]
+    },
+    {
+      "id": "topic-responsibilities",
+      "title": "Topic Responsibilities",
+      "order": 2,
+      "rules": [
+        {
+          "id": "responsibilities-table",
+          "type": "reference",
+          "title": "Section ownership — who to go to with questions",
+          "body": "Each section of the hub has a primary owner responsible for keeping its content current. Reach out to them with questions or to flag corrections.",
+          "table": {
+            "headers": ["Section", "Responsible"],
+            "rows": [
+              ["Code Structure", ""],
+              ["SQL Best Practices", ""],
+              ["IDs & Deduplication", ""],
+              ["Concurrent Claims", ""],
+              ["Claims Classification", ""],
+              ["Member & Enrollment", ""],
+              ["Validation Practices", ""],
+              ["Macro Patterns", ""],
+              ["Provider Taxonomy", ""],
+              ["Visualizations", ""]
+            ]
+          }
+        }
+      ]
     }
   ]
 }
