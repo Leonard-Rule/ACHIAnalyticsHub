@@ -18,7 +18,7 @@
           "callout": {
             "type": "tip",
             "title": "Member vs. Person Counting",
-            "body": "When doing quick counts using newid (member ID), the same person can appear more than once if they have multiple member IDs. This is acceptable for trend analysis but should be documented. This is counting 'members' not 'people'. Countin distinct studyid is required for population-level headcounts."
+            "body": "When doing quick counts using newid (member ID), the same person can appear more than once if they have multiple member IDs. This is acceptable for trend analysis but should be documented. This is counting 'members' not 'people'. Counting distinct studyid is required for population-level headcounts."
           }
         }
       ]
