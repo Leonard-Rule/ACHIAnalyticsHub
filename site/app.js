@@ -374,21 +374,14 @@ window.addEventListener('popstate', e => {
 // ─── SAS joke generator ──────────────────────────────────────────────────────
 
 const SAS_JOKES = [
-  "Why did the analyst refuse to trust the merge? Too many unmatched BY variables in the relationship.",
-  "A SAS programmer's love language: 0 errors, 0 warnings in the log.",
+  "The data analyst's motto: If at first, you don’t succeed; call it version 1.0,
   "Why did the missing value break up with the numeric variable? It just wasn't adding up.",
   "SAS programmer pickup line: \"Are you a KEEP statement? Because you're the only one I want in this dataset.\"",
-  "Why do SAS programmers hate small talk? Too much WHERE, not enough BY.",
-  "How does a SAS programmer apologize? \"My bad — forgot the semicolon.\"",
-  "Why did the duplicate claim get flagged? It couldn't decide if it was FIRST. or LAST.",
-  "What do you call a SAS program that runs clean on the first submit? A rumor.",
-  "Why did PROC FREQ go to therapy? Too many unresolved categories.",
-  "A claims analyst's worst nightmare: the row count doesn't match the distinct ID count, and it's 4:59pm.",
-  "Why did the macro variable feel invisible? Nobody wrapped it in ampersands.",
-  "You know a SAS programmer is an optimist when they still expect the log to say NOTE instead of ERROR.",
-  "Why don't SAS programmers play hide and seek with their libnames? The good ones are always found in Step 0.",
-  "What did one date variable say to the other? \"Let's not overlap unless we mean it — three conditions or nothing.\"",
-  "Why did the SQL join get audited? It kept fanning out and refusing to explain itself.",
+  "Why did the macro variable feel invisible? Nobody put an ampersand in front of it.",
+  "There are 10 kinds of people in this world. Those who understand binary and those who don’t.",
+  "Old data analysts never die – they just get broken down by age.",
+  "Two random variables were talking in a bar. They thought they were being discreet, but I heard their chatter continuously.",
+  "Why was the SQL query always lonely? Because it couldn't find a table to join."
 ];
 
 function renderJokeCard() {
@@ -404,7 +397,7 @@ function renderJokeCard() {
 
   card.innerHTML = `
     <div class="home-tip-header">
-      <span class="home-tip-label"><span class="icon ti-mood-smile" aria-hidden="true"></span> SAS Joke Break</span>
+      <span class="home-tip-label"><span class="icon ti-mood-smile" aria-hidden="true"></span> Analytics Joke Break</span>
       <button class="joke-shuffle-btn" type="button" aria-label="Show another joke" title="Another one">
         <span class="icon ti-refresh" aria-hidden="true"></span> New joke
       </button>
@@ -489,8 +482,8 @@ function renderHome() {
   const about = el('div', {class: 'about-card'});
   about.innerHTML = `
     <div class="about-card-title"><span class="icon ti-info-circle" aria-hidden="true"></span> About this site</div>
-    <p>The ACHI Analytucs Hub is a living reference for ACHI's analytical standards, SAS/SQL patterns, and project conventions. It exists so we can all learn from each other and standardize the way we pull and analyze data.</p>
-    <p>Found something out of date, or have a pattern worth adding? Use the <span class="icon ti-flag" aria-hidden="true"></span> flag icon on any rule to mark it as outdated, or use "Suggest edit" on a code snippet to propose a change. Both open a GitHub issue so the team can review it.</p>
+    <p>The ACHI Analytics Hub is a living reference for ACHI's analytical standards, SAS/SQL patterns, and project conventions. It exists so we can all learn from each other and standardize the way we pull and analyze data.</p>
+    <p>Found something out of date, or have a pattern worth adding? Use the <span class="icon ti-flag" aria-hidden="true"></span> flag icon on any rule to mark it as outdated or incorrect, or use "Suggest edit" on a code snippet to propose a change. They will open in GitHub so you can submit and the team can review it.</p>
   `;
   area.appendChild(about);
 
