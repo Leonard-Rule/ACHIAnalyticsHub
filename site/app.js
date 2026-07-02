@@ -374,7 +374,7 @@ window.addEventListener('popstate', e => {
 // ─── SAS joke generator ──────────────────────────────────────────────────────
 
 const SAS_JOKES = [
-  "The data analyst's motto: If at first, you don’t succeed; call it version 1.0,
+  "The data analyst’s motto: If at first you don’t succeed, call it version 1.0.",
   "Why did the missing value break up with the numeric variable? It just wasn't adding up.",
   "SAS programmer pickup line: \"Are you a KEEP statement? Because you're the only one I want in this dataset.\"",
   "Why did the macro variable feel invisible? Nobody put an ampersand in front of it.",
