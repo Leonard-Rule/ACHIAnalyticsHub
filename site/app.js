@@ -376,7 +376,6 @@ window.addEventListener('popstate', e => {
 const SAS_JOKES = [
   "The data analyst’s motto: If at first you don’t succeed, call it version 1.0.",
   "Why did the missing value break up with the numeric variable? It just wasn't adding up.",
-  "SAS programmer pickup line: \"Are you a KEEP statement? Because you're the only one I want in this dataset.\"",
   "Why did the macro variable feel invisible? Nobody put an ampersand in front of it.",
   "There are 10 kinds of people in this world. Those who understand binary and those who don’t.",
   "Old data analysts never die – they just get broken down by age.",
