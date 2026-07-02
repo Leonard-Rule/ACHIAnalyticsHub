@@ -5,28 +5,22 @@
   "order": 12,
   "subsections": [
     {
-      "id": "topic-responsibilities",
-      "title": "Topic Responsibilities",
+      "id": "build-schedule",
+      "title": "Build Schedule",
       "order": 1,
       "rules": [
         {
-          "id": "responsibilities-table",
+          "id": "build-schedule-table",
           "type": "reference",
-          "title": "Section ownership — who to go to with questions",
-          "body": "Each section of the hub has a primary owner responsible for keeping its content current. Reach out to them with questions or to flag corrections.",
+          "title": "Annual build schedule — key dates by build",
+          "body": "Each build letter corresponds to a quarterly submission cycle. The 'Ideally' column notes the preferred data window when data maturity allows.",
           "table": {
-            "headers": ["Section", "Responsible"],
+            "headers": ["Build", "Run through", "Submission Deadline", "When we receive data from data team", "Ideally"],
             "rows": [
-              ["Code Structure", ""],
-              ["SQL Best Practices", ""],
-              ["IDs & Deduplication", ""],
-              ["Concurrent Claims", ""],
-              ["Claims Classification", ""],
-              ["Member & Enrollment", ""],
-              ["Validation Practices", ""],
-              ["Macro Patterns", ""],
-              ["Provider Taxonomy", ""],
-              ["Visualizations", ""]
+              ["A", "3/31", "6/30", "9/15", "Full calendar year because by March, the data is mature enough"],
+              ["B", "6/30", "9/30", "12/15", ""],
+              ["C", "9/30", "12/31", "3/15", "Full state fiscal year"],
+              ["D", "12/31", "3/31", "6/15", ""]
             ]
           }
         }
