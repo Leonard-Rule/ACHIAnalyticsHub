@@ -39,15 +39,15 @@
           "table": {
             "headers": ["Section", "Responsible"],
             "rows": [
-              ["Code Structure", ""],
-              ["SQL Best Practices", ""],
-              ["IDs & Deduplication", ""],
-              ["Concurrent Claims", ""],
+              ["Folder & Code Structure", ""],
+              ["ACHI IDs", ""],
+              ["SQL & SAS Best Practices", ""],
+              ["Member & Enrollment Tables", ""],
+              ["Episode of Care Logic", ""],
               ["Claims Classification", ""],
-              ["Member & Enrollment", ""],
-              ["Validation Practices", ""],
+              ["Validation", ""],
               ["Macro Patterns", ""],
-              ["Provider Taxonomy", ""],
+              ["Provider & Clinic Types", ""],
               ["Visualizations", ""]
             ]
           }
