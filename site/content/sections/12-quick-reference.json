@@ -7,52 +7,12 @@
     {
       "id": "build-schedule",
       "title": "Build Schedule",
-      "order": 1,
-      "rules": [
-        {
-          "id": "build-schedule-table",
-          "type": "reference",
-          "title": "Annual build schedule — key dates by build",
-          "body": "Each build letter corresponds to a quarterly submission cycle. The 'Ideally' column notes the preferred data window when data maturity allows.",
-          "table": {
-            "headers": ["Build", "Run through", "Submission Deadline", "When we receive data from data team", "Ideally"],
-            "rows": [
-              ["A", "3/31", "6/30", "9/15", "Full calendar year because by March, the data is mature enough"],
-              ["B", "6/30", "9/30", "12/15", ""],
-              ["C", "9/30", "12/31", "3/15", "Full state fiscal year"],
-              ["D", "12/31", "3/31", "6/15", ""]
-            ]
-          }
-        }
-      ]
+      "order": 1
     },
     {
       "id": "topic-responsibilities",
       "title": "Topic Responsibilities",
-      "order": 2,
-      "rules": [
-        {
-          "id": "responsibilities-table",
-          "type": "reference",
-          "title": "Section ownership — who to go to with questions",
-          "body": "Each section of the hub has a primary owner responsible for keeping its content current. Reach out to them with questions or to flag corrections.",
-          "table": {
-            "headers": ["Section", "Responsible"],
-            "rows": [
-              ["Folder & Code Structure", ""],
-              ["ACHI IDs", ""],
-              ["SQL & SAS Best Practices", ""],
-              ["Member & Enrollment Tables", ""],
-              ["Episode of Care Logic", ""],
-              ["Claims Classification", ""],
-              ["Validation", ""],
-              ["Macro Patterns", ""],
-              ["Provider & Clinic Types", ""],
-              ["Visualizations", ""]
-            ]
-          }
-        }
-      ]
+      "order": 2
     }
   ]
 }

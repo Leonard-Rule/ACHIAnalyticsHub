@@ -7,44 +7,12 @@
     {
       "id": "date-overlap-definition",
       "title": "Pulling Concurrent Claims",
-      "order": 1,
-      "rules": [
-        {
-          "id": "date-overlap-rule",
-          "type": "remember",
-          "title": "Three conditions are required to catch all overlapping claims",
-          "body": "When identifying claims that are concurrent with an event of interest, capture any claim whose date range overlaps OR encompasses the event dates — not just claims that start within the event window.",
-          "comparison": {
-            "wrong": {
-              "label": "Incorrect — too narrow, misses spanning claims",
-              "snippet_ref": "date-overlap-wrong"
-            },
-            "correct": {
-              "label": "Correct — three-condition overlap",
-              "snippet_ref": "date-overlap-correct"
-            }
-          },
-          "callout": {
-            "type": "tip",
-            "title": "Example",
-            "body": "Event: Jan 15 – Jan 15. Concurrent facility claim: Jan 14 – Jan 16. The correct logic catches this; the incorrect logic misses it because the claim starts before the event."
-          }
-        }
-      ]
+      "order": 1
     },
     {
       "id": "nested-dates",
       "title": "Handling Nested Dates",
-      "order": 2,
-      "rules": [
-        {
-          "id": "nested-dates-rule",
-          "type": "code",
-          "title": "Remove events that are completely contained within another event",
-          "body": "Some events will have other events completely within them — generally we want to remove those before creating visit sequences or counting episodes. The macro below iteratively removes nested date ranges until none remain, then builds a gap-based sequence so you can identify readmissions and roll up nearby visits.",
-          "snippet_ref": "nested-dates-removal"
-        }
-      ]
+      "order": 2
     }
   ]
 }

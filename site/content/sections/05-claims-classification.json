@@ -7,30 +7,12 @@
     {
       "id": "identifying-procedures",
       "title": "Identifying Procedures",
-      "order": 2,
-      "rules": [
-        {
-          "id": "identifying-procedures-code",
-          "type": "code",
-          "title": "Using CPT or DX codes to identify procedures of interest",
-          "body": "Use preidentified CPT Codes or DX codes along with this code to scan through procedure code fields and diagnosis fields in the claims to identify procedures of interest.",
-          "snippet_ref": "identify-procedures"
-        }
-      ]
+      "order": 2
     },
     {
       "id": "professional-facility",
       "title": "Classify Professional and Facility Claims",
-      "order": 1,
-      "rules": [
-        {
-          "id": "prof-facility-snippet",
-          "type": "code",
-          "title": "Classify claims using MC094_TypeOfClaim and bill type",
-          "body": "Use MC094_TypeOfClaim and MC036_TypeOfBill_Institutional to classify each claim as Inpatient facility, Outpatient facility, Professional, or Other. INP/OUT/PTB map directly; '002' claims are further split by bill type prefix (11 = inpatient, 13/14 = outpatient); '001' = professional.",
-          "snippet_ref": "classify-professional-facility"
-        }
-      ]
+      "order": 1
     }
   ]
 }

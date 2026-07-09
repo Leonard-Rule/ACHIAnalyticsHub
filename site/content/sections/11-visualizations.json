@@ -7,8 +7,7 @@
     {
       "id": "tableau-best-practices",
       "title": "Tableau Best Practices",
-      "order": 1,
-      "rules": []
+      "order": 1
     }
   ]
 }

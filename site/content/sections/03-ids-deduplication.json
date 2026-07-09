@@ -7,51 +7,17 @@
     {
       "id": "newids",
       "title": "NewIDs",
-      "order": 1,
-      "rules": [
-        {
-          "id": "newid-rule",
-          "type": "reference",
-          "title": "NewID — member identifier built from submitter + member ID",
-          "body": "NewID is the combination of Submitter (ME001) + memberid (ME107), therefore it can be created for any claim. NewIDs are member-level identifiers in the APCD.",
-          "callout": {
-            "type": "warning",
-            "title": "NewID counts are member counts, not individual counts",
-            "body": "NewID is created by submitter, so the same person can have multiple NewIDs in the same year and can even have multiple NewIDs at the same time if they have dual coverage. This means any distinct NewID counts are called member counts but would never be a count of total individuals."
-          }
-        }
-      ]
+      "order": 1
     },
     {
       "id": "studyids",
       "title": "StudyIDs",
-      "order": 2,
-      "rules": [
-        {
-          "id": "studyid-rule",
-          "type": "reference",
-          "title": "StudyID — de-identified person-level identifier",
-          "body": "Last name (encrypted as ME998) + Sex + DOB. Also known as Hash_ID (just last name (encrypted as ME998) + DOB). Use cases: link HTI and HDI, follow people over time.",
-          "callout": {
-            "type": "warning",
-            "title": "StudyIDs can be unreliable",
-            "body": "Since StudyIDs are based on a person's last name, they can be unreliable because last names change when people get married, divorced, etc. They are still a handy identifier, but there will always be limitations when using StudyID."
-          }
-        }
-      ]
+      "order": 2
     },
     {
       "id": "mpid",
       "title": "MPID",
-      "order": 3,
-      "rules": [
-        {
-          "id": "mpid-rule",
-          "type": "reference",
-          "title": "MPID — Master Person ID created by analytics",
-          "body": "Created by analytics, reconciles pid and studyid. Can be used to link HTI and HDI, follow people over time. Found in mpid_enrollsegs_25aMMDDtoMMDD."
-        }
-      ]
+      "order": 3
     }
   ]
 }

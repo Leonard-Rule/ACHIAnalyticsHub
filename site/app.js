@@ -36,6 +36,7 @@ async function boot() {
     loadSections(),
     loadSnippets(),
   ]);
+  await loadAllSubsectionMarkdown();
   buildSearchIndex();
   renderSidebar();
   renderQuickRef();
@@ -172,6 +173,118 @@ async function loadSnippets() {
   } catch (e) {
     console.warn('Could not load snippet manifest:', e);
   }
+}
+
+// ─── Subsection markdown loading ─────────────────────────────────────────────
+
+async function loadAllSubsectionMarkdown() {
+  const fetches = [];
+  State.sections.forEach(section => {
+    (section.subsections || []).forEach(sub => {
+      if (!sub.rules || sub.rules.length === 0) {
+        const path = `content/subsections/${section.id}/${sub.id}.md`;
+        fetches.push(
+          fetch(path)
+            .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+            .then(text => { sub.rules = parseMarkdownRules(text); })
+            .catch(() => { if (!sub.rules) sub.rules = []; })
+        );
+      }
+    });
+  });
+  await Promise.allSettled(fetches);
+}
+
+function parseMarkdownRules(text) {
+  const parts = text.split(/(?=^## )/m).filter(p => /^## /.test(p.trimStart()));
+  return parts.map(parseMarkdownRule).filter(r => r && r.title);
+}
+
+function parseMarkdownRule(text) {
+  const lines = text.split('\n');
+  const rule = {};
+
+  rule.title = (lines[0] || '').replace(/^##\s*/, '').trim();
+
+  let i = 1;
+  while (i < lines.length && !lines[i].trim()) i++;
+
+  // Metadata lines (key: value) immediately after title
+  while (i < lines.length) {
+    const m = lines[i].match(/^(id|type|snippet):\s*(.+)$/);
+    if (!m) break;
+    if (m[1] === 'id') rule.id = m[2].trim();
+    else if (m[1] === 'type') rule.type = m[2].trim();
+    else if (m[1] === 'snippet') rule.snippet_ref = m[2].trim();
+    i++;
+  }
+
+  const bodyLines = [], listItems = [], checklistItems = [], tableLines = [];
+  let callout = null, inCallout = false, calloutType = '', calloutTitle = '', calloutBody = [];
+  let inCompare = false, compareWrong = null, compareCorrect = null;
+  let tipText = null, inTip = false, tipLines = [];
+
+  while (i < lines.length) {
+    const line = lines[i++];
+    if (line.trimStart().startsWith('---') && line.trim() === '---') break;
+
+    if (line.startsWith('[callout ')) {
+      inCallout = true;
+      const m = line.match(/\[callout (\w+) "([^"]+)"\]/);
+      calloutType = m ? m[1] : 'tip';
+      calloutTitle = m ? m[2] : '';
+      calloutBody = [];
+    } else if (line === '[/callout]') {
+      inCallout = false;
+      callout = { type: calloutType, title: calloutTitle, body: calloutBody.join(' ') };
+    } else if (inCallout) {
+      if (line.trim()) calloutBody.push(line.trim());
+
+    } else if (line === '[compare]') {
+      inCompare = true;
+    } else if (line === '[/compare]') {
+      inCompare = false;
+      if (compareWrong && compareCorrect) rule.comparison = { wrong: compareWrong, correct: compareCorrect };
+    } else if (inCompare) {
+      const w = line.match(/^wrong:\s*(\S+)\s*\|\s*(.+)$/);
+      const c = line.match(/^correct:\s*(\S+)\s*\|\s*(.+)$/);
+      if (w) compareWrong = { snippet_ref: w[1], label: w[2].trim() };
+      if (c) compareCorrect = { snippet_ref: c[1], label: c[2].trim() };
+
+    } else if (line === '[tip]') {
+      inTip = true; tipLines = [];
+    } else if (line === '[/tip]') {
+      inTip = false;
+      tipText = tipLines.join(' ');
+    } else if (inTip) {
+      if (line.trim()) tipLines.push(line.trim());
+
+    } else if (line.startsWith('- [ ] ')) {
+      checklistItems.push(line.slice(6).trim());
+    } else if (line.startsWith('- ')) {
+      listItems.push(line.slice(2).trim());
+    } else if (line.startsWith('| ') && !/^\|[\s\-:|]+\|/.test(line)) {
+      tableLines.push(line);
+    } else if (/^\|[\s\-:|]+\|/.test(line)) {
+      // table separator row — skip
+    } else if (line.trim() && !line.startsWith('#')) {
+      bodyLines.push(line.trim());
+    }
+  }
+
+  rule.body = bodyLines.join(' ');
+  if (!rule.id) rule.id = rule.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/, '');
+  if (!rule.type) rule.type = 'sop';
+  if (listItems.length) rule.list = listItems;
+  if (checklistItems.length) rule.checklist = checklistItems;
+  if (callout) rule.callout = callout;
+  if (tipText) rule.tip = tipText;
+  if (tableLines.length) {
+    const rows = tableLines.map(l => l.split('|').slice(1, -1).map(c => c.trim()));
+    rule.table = { headers: rows[0], rows: rows.slice(1) };
+  }
+
+  return rule;
 }
 
 // ─── Search index ────────────────────────────────────────────────────────────
