@@ -544,7 +544,7 @@ function renderHome() {
   const area = document.getElementById('content-area');
   area.innerHTML = '';
 
-  area.appendChild(el('h1', {class: 'page-title'}, 'Analytics Team Library & Standards'));
+  area.appendChild(el('h1', {class: 'page-title'}, 'Analytics Team Library & Standards (ATLAS)'));
   area.appendChild(el('p', {class: 'page-subtitle'},
     'Your go-to reference for analytical standards, SAS code, and project guidance.'));
 
